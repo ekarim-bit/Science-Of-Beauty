@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Science of You — BeautyTech U™</title>
+<title>The Science of You — BeautyTech U™ × SOUL Programs</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
@@ -140,6 +140,38 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
 .pdf-viewer-wrap{width:100%;border:1.5px solid var(--border);border-radius:10px;overflow:hidden;background:#fff}
 .pdf-viewer{width:100%;height:75vh;border:none;display:block}
 @media(max-width:500px){.pdf-viewer{height:60vh}}
+
+/* ── GenieScan™ ── */
+.gs-panel{}
+.gs-loading-wrap{text-align:center;padding:3rem 1rem}
+.gs-spinner{width:44px;height:44px;border:3px solid rgba(216,64,201,0.18);border-top-color:var(--magenta);border-radius:50%;animation:gs-spin 0.85s linear infinite;margin:0 auto 1.25rem}
+@keyframes gs-spin{to{transform:rotate(360deg)}}
+.gs-loading-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--near-black);margin-bottom:6px}
+.gs-loading-sub{font-size:13px;color:var(--slate)}
+.gs-profile-card{border:1.5px solid var(--border);border-radius:12px;padding:1.5rem;background:#fff;margin-bottom:12px}
+.gs-profile-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--near-black);margin-bottom:4px}
+.gs-profile-tagline{font-size:14px;color:var(--magenta);font-weight:600;margin-bottom:1rem;line-height:1.5}
+.gs-profile-summary{font-size:13px;color:var(--slate);line-height:1.65;margin-bottom:1rem}
+.gs-insight-list{list-style:none;margin-bottom:1rem;padding:0}
+.gs-insight-list li{font-size:13px;color:var(--near-black);padding:7px 0 7px 22px;position:relative;border-bottom:1px solid var(--border);line-height:1.5}
+.gs-insight-list li:last-child{border-bottom:none}
+.gs-insight-list li::before{content:'→';position:absolute;left:0;color:var(--magenta);font-weight:700}
+.gs-affirmation{background:var(--near-black);border-radius:8px;padding:14px 18px;font-size:13px;color:#fff;font-style:italic;line-height:1.65;text-align:center;margin-top:14px}
+.gs-chat-messages{min-height:180px;max-height:360px;overflow-y:auto;border:1.5px solid var(--border);border-radius:10px;padding:14px;background:#fff;margin-bottom:10px;display:flex;flex-direction:column;gap:10px}
+.gs-msg{max-width:86%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.55}
+.gs-msg-user{background:var(--magenta);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+.gs-msg-ai{background:var(--off-white);color:var(--near-black);align-self:flex-start;border-bottom-left-radius:3px;border:1px solid var(--border)}
+.gs-msg-typing{background:var(--off-white);color:var(--slate);align-self:flex-start;border:1px solid var(--border);border-radius:12px;padding:10px 14px;font-size:13px;font-style:italic}
+.gs-chat-input-row{display:flex;gap:8px;align-items:flex-end}
+.gs-chat-textarea{flex:1;border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--near-black);background:#fff;resize:none;min-height:44px;margin-bottom:0}
+.gs-chat-textarea:focus{outline:none;border-color:var(--magenta)}
+.gs-chat-send-btn{padding:10px 18px;border-radius:8px;background:var(--magenta);color:#fff;border:none;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;height:44px}
+.gs-chat-send-btn:hover{background:var(--magenta-dk)}
+.gs-chat-send-btn:disabled{opacity:0.45;cursor:not-allowed}
+.gs-context-pill{display:inline-flex;align-items:center;gap:6px;background:#FDF0FC;border:1px solid #F0B0EC;border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;color:var(--magenta-dk);margin-bottom:12px}
+.gs-starter-prompts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.gs-starter{padding:6px 12px;border-radius:16px;border:1.5px solid var(--border);background:#fff;font-size:11px;color:var(--slate);cursor:pointer;font-family:'DM Sans',sans-serif}
+.gs-starter:hover{border-color:var(--magenta);color:var(--magenta)}
 </style>
 </head>
 <body>
@@ -150,89 +182,101 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
     <div class="btu-tagline">AI &middot; BEAUTY &middot; ENTREPRENEURSHIP</div>
   </div>
   <div class="header-title">
-    <div class="header-event">The Science of You</div>
-    <div class="header-conf" id="student-name-display">K&#8211;12 Edition &middot; BeautyTech U&#x2122;</div>
+    <div class="header-event">Formation Conference 2026 &middot; TRIBE U</div>
+    <div class="header-conf">Washington, D.C. &middot; BeautyTech U&#x2122; &times; SOUL Programs</div>
   </div>
 </header>
 
-<!-- NAME CAPTURE SCREEN -->
-<div id="name-screen" style="position:fixed;inset:0;background:var(--near-black);z-index:999;display:flex;align-items:center;justify-content:center;padding:24px">
-  <div style="background:var(--off-white);border-radius:16px;padding:2rem;max-width:420px;width:100%;text-align:center">
-    <div style="font-size:32px;margin-bottom:12px">&#10024;</div>
-    <div style="font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:var(--near-black);margin-bottom:8px">Welcome to The Science of You</div>
-    <div style="font-size:13px;color:var(--slate);margin-bottom:1.5rem;line-height:1.6">A BeautyTech U&#x2122; experience &#8212; where hair science, AI, and entrepreneurship come together. Let&#8217;s start with your name.</div>
-    <input type="text" id="student-name-input" placeholder="Enter your first name..." style="text-align:center;font-size:15px;margin-bottom:1rem" onkeydown="if(event.key==='Enter')startApp()">
-    <button class="btn-p" style="width:100%;padding:12px" onclick="startApp()">Let&#8217;s go &rarr;</button>
-    <div style="font-size:11px;color:var(--slate);margin-top:12px">Powered by The Beauty Genie&#174; &middot; BeautyTech U&#x2122;</div>
-  </div>
-</div>
-
 <div class="progress-wrap">
   <div class="module-tabs">
-    <div class="tab active" id="nav-1" onclick="goMod(1)">HairID&#x2122; scan</div>
+    <div class="tab active" id="nav-1" onclick="goMod(1)">GenieScan&#x2122;</div>
     <div class="tab" id="nav-2" onclick="goMod(2)">Formulery&#x2122; lab</div>
     <div class="tab" id="nav-3" onclick="goMod(3)">Build it</div>
     <div class="tab" id="nav-4" onclick="goMod(4)">My workbook</div>
-    <div class="tab" id="nav-5" onclick="goMod(5)">BeautyTech U&#x2122;</div>
   </div>
   <div class="prog-bar"><div class="prog-fill" id="prog"></div></div>
 </div>
 
 <main class="main">
 
-  <!-- MODULE 1: HAIRID -->
+  <!-- MODULE 1: GENIESCAN -->
   <div class="module on" id="mod-1">
-    <div class="mod-header">
-      <div class="mod-badge badge-pink">30&#8211;50 min &middot; hair technology + AI</div>
-      <div class="mod-title">MYAVANA HairID&#x2122; scan</div>
-      <div class="mod-sub">Real AI-powered hair analysis &#8212; exclusively through The Beauty Genie&#174;</div>
+
+    <!-- QUIZ -->
+    <div id="gs-quiz">
+      <div class="mod-header">
+        <div class="mod-badge badge-pink">5 min &middot; AI hair analysis</div>
+        <div class="mod-title">GenieScan&#x2122;</div>
+        <div class="mod-sub">Answer a few questions &mdash; we&rsquo;ll build your personalized hair profile</div>
+      </div>
+
+      <div class="q-label">What&rsquo;s your hair type?</div>
+      <div class="opt-grid" id="gs-type-opts"></div>
+
+      <div class="q-label" style="margin-top:1rem">Hair porosity</div>
+      <div class="q-sub">How quickly does water absorb into your strands?</div>
+      <div class="opt-grid" id="gs-porosity-opts"></div>
+
+      <div class="q-label" style="margin-top:1rem">Hair density</div>
+      <div class="q-sub">How much hair do you have on your scalp?</div>
+      <div class="opt-grid" id="gs-density-opts"></div>
+
+      <div class="q-label" style="margin-top:1rem">Strand texture</div>
+      <div class="q-sub">How thick is each individual strand?</div>
+      <div class="opt-grid" id="gs-texture-opts"></div>
+
+      <div class="q-label" style="margin-top:1rem">Hair goals <span style="font-weight:400;color:var(--slate)">&mdash; pick all that apply</span></div>
+      <div class="opt-grid" id="gs-goals-opts"></div>
+
+      <div class="btn-row">
+        <button class="btn-p" onclick="gsGenerate()">Generate my profile &rarr;</button>
+      </div>
     </div>
-    <div class="insight insight-blue" style="background:#E6F1FB;color:#185FA5;margin-bottom:1.25rem">
-      This module uses the real MYAVANA HairID&#x2122; platform &#8212; the same AI technology used by professional stylists. Your TBG exclusive access is ready below.
+
+    <!-- LOADING -->
+    <div id="gs-loading" style="display:none">
+      <div class="gs-loading-wrap">
+        <div class="gs-spinner"></div>
+        <div class="gs-loading-title">Analyzing your hair&hellip;</div>
+        <div class="gs-loading-sub">GenieScan&#x2122; is building your personalized profile</div>
+      </div>
     </div>
-    <div class="myavana-box">
-      <div class="myavana-title">Ready to scan your hair?</div>
-      <div class="myavana-sub">MYAVANA HairID&#x2122; uses AI to analyze your curl pattern, porosity, and hair needs &#8212; then builds your personalized hair profile. This technology was built by a Black woman, for us.</div>
-      <a class="btn-myavana" href="https://myavana.tech/beautygenie" target="_blank" rel="noopener">Launch HairID&#x2122; scan &rarr;</a>
+
+    <!-- PROFILE -->
+    <div id="gs-profile" style="display:none">
+      <div class="mod-header">
+        <div class="mod-badge badge-pink">Your GenieScan&#x2122; results</div>
+        <div class="mod-title">Your hair profile</div>
+      </div>
+      <div id="gs-profile-result"></div>
+      <div class="btn-row">
+        <button class="btn-p" onclick="gsOpenChat()">Chat with GenieScan&#x2122; &rarr;</button>
+        <button class="btn-s" onclick="gsRetakeQuiz()">Retake quiz</button>
+      </div>
     </div>
-    <div class="section-lbl">What you'll do inside</div>
-    <div class="steps-visual">
-      <div class="step-item"><div class="step-num">1</div><div class="step-text">Answer questions about your hair texture, thickness, and history<span>Takes about 3&#8211;5 minutes</span></div></div>
-      <div class="step-item"><div class="step-num">2</div><div class="step-text">AI analyzes your responses and builds your hair data profile<span>Same engine used by professional stylists</span></div></div>
-      <div class="step-item"><div class="step-num">3</div><div class="step-text">You receive personalized product and routine recommendations<span>Based on your actual hair data &#8212; not a generic quiz</span></div></div>
-      <div class="step-item"><div class="step-num">4</div><div class="step-text">Come back here and share what you discovered<span>We&#8217;ll connect your HairID&#x2122; results to the formula you build next</span></div></div>
+
+    <!-- CHAT -->
+    <div id="gs-chat" style="display:none">
+      <div class="mod-header">
+        <div class="mod-badge badge-pink">GenieScan&#x2122; AI</div>
+        <div class="mod-title">Ask your hair anything</div>
+        <div class="mod-sub">GenieScan&#x2122; already knows your profile &mdash; ask away</div>
+      </div>
+      <div id="gs-context-pill"></div>
+      <div class="gs-starter-prompts" id="gs-starters"></div>
+      <div class="gs-chat-messages" id="gs-chat-messages"></div>
+      <div class="gs-chat-input-row">
+        <textarea class="gs-chat-textarea" id="gs-chat-input" rows="2" placeholder="Ask about your hair, routine, products&hellip;" onkeydown="gsChatKey(event)"></textarea>
+        <button class="gs-chat-send-btn" id="gs-send-btn" onclick="gsSend()">Send</button>
+      </div>
+      <div class="btn-row" style="margin-top:0.75rem">
+        <button class="btn-s" onclick="gsShowPanel('gs-profile')">&larr; View my profile</button>
+        <button class="btn-p" onclick="goMod(2)">Next: build your formula &rarr;</button>
+      </div>
     </div>
-    <div class="divider"></div>
-    <div class="q-label">After your scan &#8212; what surprised you most?</div>
-    <div class="q-sub">Select what you discovered about your hair</div>
-    <div class="opt-grid" id="h-discoveries"></div>
-    <div id="h-insight"></div>
-    <div class="btn-row">
-      <button class="btn-p" onclick="showReflect(1)">Next: build your formula &rarr;</button>
-    </div>
+
   </div>
 
-  <!-- REFLECTION 1: After HairID -->
-  <div class="module" id="reflect-1">
-    <div style="background:var(--near-black);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;text-align:center">
-      <div style="font-size:28px;margin-bottom:10px">&#x1F4A1;</div>
-      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:#fff;margin-bottom:6px">Before we move on<span id="r1-name"></span></div>
-      <div style="font-size:13px;color:rgba(255,255,255,0.6)">Take a moment to reflect on what you just discovered.</div>
-    </div>
-    <div class="q-label">What did your HairID&#x2122; scan reveal that surprised you?</div>
-    <div class="q-sub">Select one that resonates most</div>
-    <div class="opt-grid">
-      <div class="opt" onclick="this.classList.toggle('sel')"><div class="opt-name">My porosity type</div><div class="opt-desc">I had no idea how it affects everything</div></div>
-      <div class="opt" onclick="this.classList.toggle('sel')"><div class="opt-name">My exact curl pattern</div><div class="opt-desc">More specific than I expected</div></div>
-      <div class="opt" onclick="this.classList.toggle('sel')"><div class="opt-name">Product mismatches</div><div class="opt-desc">I&#8217;ve been using the wrong things</div></div>
-      <div class="opt" onclick="this.classList.toggle('sel')"><div class="opt-name">Scalp health matters</div><div class="opt-desc">It&#8217;s the foundation of everything</div></div>
-    </div>
-    <div class="q-label" style="margin-top:1rem">Finish this sentence: &#8220;I never knew my hair&#8230;&#8221;</div>
-    <textarea placeholder="Write anything that comes to mind..." style="margin-top:8px"></textarea>
-    <div class="btn-row">
-      <button class="btn-p" onclick="goMod(2)">Continue to formula lab &rarr;</button>
-    </div>
-  </div>
 
   <!-- MODULE 2: FORMULERY -->
   <div class="module" id="mod-2">
@@ -249,7 +293,7 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
     </div>
     <div class="step-panel on" id="f-p1">
       <div class="q-label">What does your hair need most right now?</div>
-      <div class="q-sub">Use what you learned from your HairID&#x2122; scan to guide your answer</div>
+      <div class="q-sub">Use what you learned from your GenieScan&#x2122; to guide your answer</div>
       <div class="opt-grid" id="f-goals"></div>
       <div class="btn-row"><button class="btn-p teal" onclick="fGo(2)">Next &rarr;</button></div>
     </div>
@@ -278,38 +322,17 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
       <div id="f-result"></div>
       <div class="btn-row">
         <button class="btn-s" onclick="fReset()">Start over</button>
-        <button class="btn-p teal" onclick="showReflect(2)">Next: build it &rarr;</button>
+        <button class="btn-p teal" onclick="goMod(3)">Next: build it &rarr;</button>
       </div>
     </div>
   </div>
 
-  <!-- REFLECTION 2: After Formulery -->
-  <div class="module" id="reflect-2">
-    <div style="background:#E1F5EE;border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;border-left:4px solid var(--teal)">
-      <div style="font-size:28px;margin-bottom:10px">&#x2697;&#xFE0F;</div>
-      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--near-black);margin-bottom:6px">You just did what a cosmetic chemist does<span id="r2-name"></span></div>
-      <div style="font-size:13px;color:var(--teal-dk);line-height:1.6">Every hair care product you&#8217;ve ever used was built by someone just like you &#8212; who understood ingredients, goals, and what hair actually needs.</div>
-    </div>
-    <div class="q-label">How does it feel to know you can formulate?</div>
-    <div class="opt-grid">
-      <div class="opt" onclick="this.classList.toggle('sel-teal')"><div class="opt-name">&#x1F525; Excited</div><div class="opt-desc">I want to learn more about this</div></div>
-      <div class="opt" onclick="this.classList.toggle('sel-teal')"><div class="opt-name">&#x1F914; Curious</div><div class="opt-desc">I didn&#8217;t know beauty was this scientific</div></div>
-      <div class="opt" onclick="this.classList.toggle('sel-teal')"><div class="opt-name">&#x1F4AA; Confident</div><div class="opt-desc">I could actually see myself doing this</div></div>
-      <div class="opt" onclick="this.classList.toggle('sel-teal')"><div class="opt-name">&#x1F4A1; Inspired</div><div class="opt-desc">I have an idea for a product now</div></div>
-    </div>
-    <div class="q-label" style="margin-top:1rem">If you could name your formula, what would you call it?</div>
-    <input type="text" id="formula-name" placeholder="Give your formula a name..." style="margin-top:8px">
-    <div class="btn-row">
-      <button class="btn-p teal" onclick="goMod(3)">Continue to Build It &rarr;</button>
-    </div>
-  </div>
-
-  <!-- MODULE 3: BUILD IT - audience agnostic -->
+  <!-- MODULE 3: BUILD IT -->
   <div class="module" id="mod-3">
     <div class="mod-header">
-      <div class="mod-badge badge-blue">50&#8211;65 min &middot; beauty &times; entrepreneurship</div>
+      <div class="mod-badge badge-blue">50&#8211;65 min &middot; sports &times; beauty business</div>
       <div class="mod-title blue">Build it</div>
-      <div class="mod-sub">If you could build a product or tech tool for the beauty industry &#8212; what would it do?</div>
+      <div class="mod-sub">If you could build a product or tech tool for Black girl athletes &#8212; what would it do?</div>
     </div>
     <div class="step-panel on" id="b-p1">
       <div class="q-label">What problem are you solving?</div>
@@ -343,7 +366,7 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
       <div id="b-board"></div>
       <div class="btn-row">
         <button class="btn-s" onclick="bReset()">Submit another idea</button>
-        <button class="btn-p blue" onclick="showReflect(3)">Continue &rarr;</button>
+        <button class="btn-p blue" onclick="goMod(4)">My workbook &rarr;</button>
       </div>
     </div>
   </div>
@@ -365,73 +388,8 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
     <div class="btn-row" style="margin-top:1rem">
       <button class="btn-s" onclick="goMod(1)">&larr; Back to start</button>
       <a class="btn-p" href="https://bit.ly/BTUwaitlist2026" target="_blank">Join BTU waitlist &rarr;</a>
-      <button class="btn-p" style="background:var(--near-black)" onclick="goMod(5)">About BeautyTech U&#x2122; &rarr;</button>
     </div>
   </div>
-
-  <!-- REFLECTION 3: After Build It -->
-  <div class="module" id="reflect-3">
-    <div style="background:var(--off-white);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;border-left:4px solid var(--blue)">
-      <div style="font-size:28px;margin-bottom:10px">&#x1F680;</div>
-      <div style="font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--near-black);margin-bottom:6px">You just pitched like a founder<span id="r3-name"></span></div>
-      <div style="font-size:13px;color:var(--blue);line-height:1.6">Every business started with someone noticing a problem. That&#8217;s exactly what you just did.</div>
-    </div>
-    <div class="q-label">What career could this idea lead you toward?</div>
-    <div class="opt-grid">
-      <div class="opt" onclick="this.classList.toggle('sel-blue')"><div class="opt-name">&#x1F9EA; Cosmetic chemist</div><div class="opt-desc">Formulate the products</div></div>
-      <div class="opt" onclick="this.classList.toggle('sel-blue')"><div class="opt-name">&#x1F4F1; Beauty tech founder</div><div class="opt-desc">Build the platform</div></div>
-      <div class="opt" onclick="this.classList.toggle('sel-blue')"><div class="opt-name">&#x1F4CA; Brand strategist</div><div class="opt-desc">Tell the story</div></div>
-      <div class="opt" onclick="this.classList.toggle('sel-blue')"><div class="opt-name">&#x1F6CD;&#xFE0F; Retail innovator</div><div class="opt-desc">Change how beauty reaches people</div></div>
-      <div class="opt" onclick="this.classList.toggle('sel-blue')"><div class="opt-name">&#x1F393; All of the above</div><div class="opt-desc">Why choose?</div></div>
-    </div>
-    <div class="btn-row" style="margin-top:1rem">
-      <button class="btn-p blue" onclick="goMod(4)">Continue to My Workbook &rarr;</button>
-    </div>
-  </div>
-
-  <!-- MODULE 5: BEAUTYTECH U -->
-  <div class="module" id="mod-5">
-    <div style="background:var(--near-black);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;text-align:center">
-      <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:6px">BeautyTech U&#x2122;</div>
-      <div style="font-size:13px;color:var(--magenta);font-weight:600;margin-bottom:8px">WORKFORCE DEVELOPMENT CURRICULUM</div>
-      <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;max-width:480px;margin:0 auto">A first-of-its-kind curriculum training the next generation of beauty industry professionals. Launching at Chicago State University, August 2026.</div>
-    </div>
-    <div class="section-lbl">The four tracks</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:1.5rem">
-      <div class="result-card" style="border-left:3px solid var(--magenta)">
-        <div style="font-size:10px;font-weight:700;color:var(--magenta);letter-spacing:0.08em;margin-bottom:6px">TRACK 01</div>
-        <div class="result-title" style="font-size:15px">Business &amp; Brand Strategy</div>
-        <div style="font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5">Entrepreneurship, brand building, market analysis, and beauty industry economics.</div>
-      </div>
-      <div class="result-card" style="border-left:3px solid var(--blue)">
-        <div style="font-size:10px;font-weight:700;color:var(--blue);letter-spacing:0.08em;margin-bottom:6px">TRACK 02</div>
-        <div class="result-title" style="font-size:15px">Technology &amp; Innovation</div>
-        <div style="font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5">Beauty tech platforms, AI tools, digital retail systems, and data intelligence.</div>
-      </div>
-      <div class="result-card" style="border-left:3px solid var(--teal)">
-        <div style="font-size:10px;font-weight:700;color:var(--teal);letter-spacing:0.08em;margin-bottom:6px">TRACK 03</div>
-        <div class="result-title" style="font-size:15px">Cosmetic Chemistry</div>
-        <div style="font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5">Product formulation, ingredient science, and cosmetic development fundamentals.</div>
-      </div>
-      <div class="result-card" style="border-left:3px solid #854F0B">
-        <div style="font-size:10px;font-weight:700;color:#854F0B;letter-spacing:0.08em;margin-bottom:6px">TRACK 04</div>
-        <div class="result-title" style="font-size:15px">Beauty Retail &amp; Consumer Experience</div>
-        <div style="font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5">Retail operations, consumer behavior, cultural marketing, and distribution.</div>
-      </div>
-    </div>
-    <div class="aff-strip" style="margin-bottom:1.5rem">
-      <div class="aff-label">Launching August 2026</div>
-      <div class="aff-text">Chicago State University &middot; Campus licensing available nationwide</div>
-    </div>
-    <div style="text-align:center;background:var(--off-white);border-radius:12px;padding:1.5rem;border:1.5px solid var(--border)">
-      <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--near-black);margin-bottom:8px">Ready to go further?</div>
-      <div style="font-size:13px;color:var(--slate);margin-bottom:1.25rem;line-height:1.6">Join the BTU waitlist to be the first to know when BeautyTech U&#x2122; comes to a campus near you.</div>
-      <a class="btn-p" href="https://bit.ly/BTUwaitlist2026" target="_blank" style="margin-right:10px">Join the waitlist &rarr;</a>
-      <a class="btn-s" href="https://beautywishesinabox.com" target="_blank" style="display:inline-block;padding:10px 22px;border-radius:8px;border:1.5px solid var(--border);font-size:13px;font-weight:500;color:var(--near-black);text-decoration:none">Learn more</a>
-    </div>
-    <div style="font-size:11px;color:var(--slate);text-align:center;margin-top:1rem">Powered by The Beauty Genie&#174; &middot; @thebeautygeniebox &middot; @beautytechu</div>
-  </div>
-
 
 </main>
 
@@ -439,10 +397,225 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
   <div class="waitlist-text">BeautyTech U&#x2122; Waitlist Now Open &middot; <a href="https://bit.ly/BTUwaitlist2026" target="_blank">bit.ly/BTUwaitlist2026</a></div>
 </div>
 <footer class="site-footer">
-  <div class="footer-text">&#169; 2026 The Beauty Genie&#174; &middot; BeautyTech U&#x2122; &middot; <a href="https://beautywishesinabox.com" target="_blank">beautywishesinabox.com</a> &middot; In partnership with MYAVANA &amp; Formulery&#x2122;</div>
+  <div class="footer-text">&#169; 2026 The Beauty Genie&#174; &middot; BeautyTech U&#x2122; &middot; <a href="https://beautywishesinabox.com" target="_blank">beautywishesinabox.com</a> &middot; In partnership with SOUL Programs &amp; Formulery&#x2122;</div>
 </footer>
 
 <script>
+
+// ── GENIESCAN DATA ──
+const gsHairTypes=[
+  {id:'straight',name:'Straight',sub:'Type 1 (1A–1C)'},
+  {id:'wavy',name:'Wavy',sub:'Type 2 (2A–2C)'},
+  {id:'curly',name:'Curly',sub:'Type 3 (3A–3C)'},
+  {id:'coily',name:'Coily',sub:'Type 4 (4A–4C)'}
+];
+const gsPorosity=[
+  {id:'low',name:'Low porosity',sub:'Water beads up, slow to absorb'},
+  {id:'normal',name:'Normal porosity',sub:'Absorbs and retains moisture well'},
+  {id:'high',name:'High porosity',sub:'Absorbs fast, loses moisture fast'}
+];
+const gsDensity=[
+  {id:'thin',name:'Thin',sub:'Scalp is easily visible'},
+  {id:'medium',name:'Medium',sub:'Some scalp visible in sections'},
+  {id:'thick',name:'Thick',sub:'Scalp rarely visible'}
+];
+const gsTexture=[
+  {id:'fine',name:'Fine',sub:'Strands feel delicate, easily weighed down'},
+  {id:'medium',name:'Medium',sub:'Average strand thickness'},
+  {id:'coarse',name:'Coarse',sub:'Strands feel strong or wiry'}
+];
+const gsGoals=[
+  {id:'moisture',name:'Deep moisture',sub:'Hydration + softness'},
+  {id:'growth',name:'Length retention',sub:'Grow and keep length'},
+  {id:'frizz',name:'Frizz control',sub:'Humidity resistance'},
+  {id:'scalp',name:'Scalp health',sub:'Clarity + growth support'},
+  {id:'definition',name:'Curl definition',sub:'Pattern pop + hold'},
+  {id:'strength',name:'Strength & repair',sub:'Reduce breakage'},
+  {id:'heat',name:'Heat protection',sub:'Safe styling'}
+];
+const gsStarterPrompts=[
+  'What products should I try first?',
+  'What ingredients should I avoid?',
+  'How do I fix dry ends?',
+  'Best wash day routine for my hair?',
+  'How do I retain moisture overnight?'
+];
+
+let gsState={type:null,porosity:null,density:null,texture:null,goals:[]};
+let gsProfile=null;
+let gsChatHistory=[];
+let gsChatSystem='';
+
+function gsRenderAll(){
+  gsRenderOpts('gs-type-opts',gsHairTypes,'type');
+  gsRenderOpts('gs-porosity-opts',gsPorosity,'porosity');
+  gsRenderOpts('gs-density-opts',gsDensity,'density');
+  gsRenderOpts('gs-texture-opts',gsTexture,'texture');
+  gsRenderGoals();
+}
+function gsRenderOpts(elId,items,field){
+  document.getElementById(elId).innerHTML=items.map(item=>`
+    <div class="opt${gsState[field]===item.id?' sel':''}" onclick="gsSelect('${field}','${item.id}')">
+      <div class="opt-name">${item.name}</div><div class="opt-desc">${item.sub}</div>
+    </div>`).join('');
+}
+function gsSelect(field,id){
+  const map={type:gsHairTypes,porosity:gsPorosity,density:gsDensity,texture:gsTexture};
+  gsState[field]=gsState[field]===id?null:id;
+  gsRenderOpts('gs-'+field+'-opts',map[field],field);
+}
+function gsRenderGoals(){
+  document.getElementById('gs-goals-opts').innerHTML=gsGoals.map(g=>`
+    <div class="opt${gsState.goals.includes(g.id)?' sel':''}" onclick="gsToggleGoal('${g.id}')">
+      <div class="opt-name">${g.name}</div><div class="opt-desc">${g.sub}</div>
+    </div>`).join('');
+}
+function gsToggleGoal(id){
+  gsState.goals=gsState.goals.includes(id)?gsState.goals.filter(x=>x!==id):[...gsState.goals,id];
+  gsRenderGoals();
+}
+
+async function gsGenerate(){
+  if(!gsState.type&&!gsState.porosity){
+    alert('Please tell us a little about your hair first!');return;
+  }
+  gsShowPanel('gs-loading');
+  const tL=gsHairTypes.find(x=>x.id===gsState.type)?.name||'Not specified';
+  const pL=gsPorosity.find(x=>x.id===gsState.porosity)?.name||'Not specified';
+  const dL=gsDensity.find(x=>x.id===gsState.density)?.name||'Not specified';
+  const xL=gsTexture.find(x=>x.id===gsState.texture)?.name||'Not specified';
+  const gL=gsState.goals.map(id=>gsGoals.find(g=>g.id===id)?.name).filter(Boolean);
+
+  const system=`You are GenieScan™, BeautyTech U™'s AI hair analysis engine built for Black women and textured hair communities. Generate a personalized hair profile based on user inputs.
+
+Respond with ONLY valid JSON — no markdown, no code fences, no explanation. Exactly this shape:
+{"profileName":"empowering specific name for this hair type (e.g. 'The Type 4C Hydration Queen')","tagline":"one empowering sentence that captures their hair identity","hairSummary":"2-3 sentences describing their specific hair combination and what it means for care — be specific to their type and porosity","keyInsights":["insight about their porosity","insight about density + texture combo","insight connecting their goals to their type"],"topPriority":"the single most important thing for their hair right now — be specific, not generic","ingredients":["best ingredient for their profile","second ingredient","third ingredient"],"avoid":["ingredient or practice to avoid for their type","second thing to avoid"],"affirmation":"a warm, real closing affirmation that speaks to the Black hair care experience"}
+
+Be specific — reference their actual hair type and porosity by name. Cultural fluency matters. Warm, confident, never generic.`;
+
+  const userMsg=`My hair: Type: ${tL} | Porosity: ${pL} | Density: ${dL} | Texture: ${xL} | Goals: ${gL.length?gL.join(', '):'General health'}\n\nGenerate my GenieScan™ profile.`;
+
+  try{
+    const res=await fetch('/.netlify/functions/claude',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({system,messages:[{role:'user',content:userMsg}]})
+    });
+    if(!res.ok)throw new Error('API '+res.status);
+    const data=await res.json();
+    gsProfile=JSON.parse(data.content);
+    gsChatSystem=`You are GenieScan™, BeautyTech U™'s AI hair expert. You already know this user's hair profile:\n\nProfile: ${gsProfile.profileName}\nHair type: ${tL} | Porosity: ${pL} | Density: ${dL} | Texture: ${xL}\nGoals: ${gL.join(', ')||'General health'}\nKey insights: ${gsProfile.keyInsights.join('; ')}\nTop priority: ${gsProfile.topPriority}\nReach for: ${gsProfile.ingredients.join(', ')}\nAvoid: ${gsProfile.avoid.join(', ')}\n\nAnswer questions as if you know their hair personally. Be warm, direct, culturally fluent. Speak to the experience of Black women and textured hair communities. Keep answers conversational — 2-4 sentences unless they ask for detail.`;
+    gsChatHistory=[];
+    gsRenderProfile();
+    gsShowPanel('gs-profile');
+  }catch(err){
+    gsShowPanel('gs-quiz');
+    alert('Something went wrong. Please check your connection and try again.');
+  }
+}
+
+function gsRenderProfile(){
+  if(!gsProfile)return;
+  const p=gsProfile;
+  document.getElementById('gs-profile-result').innerHTML=`
+    <div class="gs-profile-card">
+      <div class="gs-profile-name">${p.profileName}</div>
+      <div class="gs-profile-tagline">${p.tagline}</div>
+      <div class="gs-profile-summary">${p.hairSummary}</div>
+      <div class="section-lbl">Key insights</div>
+      <ul class="gs-insight-list">${p.keyInsights.map(i=>`<li>${i}</li>`).join('')}</ul>
+      <div class="section-lbl">Top priority right now</div>
+      <div class="insight insight-pink" style="margin-bottom:1rem">${p.topPriority}</div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
+        <div style="flex:1;min-width:130px">
+          <div class="section-lbl">Ingredients to reach for</div>
+          ${p.ingredients.map(i=>`<span class="pill pill-teal">${i}</span>`).join('')}
+        </div>
+        <div style="flex:1;min-width:130px">
+          <div class="section-lbl">Avoid</div>
+          ${p.avoid.map(i=>`<span class="pill" style="background:#FEF3E2;color:#854F0B">${i}</span>`).join('')}
+        </div>
+      </div>
+      <div class="gs-affirmation">&ldquo;${p.affirmation}&rdquo;</div>
+    </div>
+    <p style="font-size:11px;color:#4C5564;text-align:center;margin-top:4px">Powered by GenieScan&#x2122; &middot; BeautyTech U&#x2122;</p>`;
+}
+
+function gsOpenChat(){
+  gsShowPanel('gs-chat');
+  if(gsProfile){
+    document.getElementById('gs-context-pill').innerHTML=
+      `<div class="gs-context-pill">&#10022; GenieScan&#x2122; knows your profile: ${gsProfile.profileName}</div>`;
+  }
+  document.getElementById('gs-starters').innerHTML=
+    gsStarterPrompts.map(q=>`<div class="gs-starter" onclick="gsUseStarter(this,'${q.replace(/'/g,"\\'")}')">${q}</div>`).join('');
+  if(gsChatHistory.length===0){
+    gsAddMessage('ai',`Hey! I've read your profile — you're ${gsProfile?.profileName||'unique'}. Ask me anything about your hair, your routine, or what to try next.`);
+  }
+}
+
+function gsUseStarter(el,text){
+  document.getElementById('gs-chat-input').value=text;
+  el.parentElement.style.display='none';
+  gsSend();
+}
+
+function gsShowPanel(id){
+  ['gs-quiz','gs-loading','gs-profile','gs-chat'].forEach(p=>{
+    document.getElementById(p).style.display=p===id?'block':'none';
+  });
+}
+
+function gsRetakeQuiz(){
+  gsState={type:null,porosity:null,density:null,texture:null,goals:[]};
+  gsProfile=null;gsChatHistory=[];
+  gsRenderAll();
+  gsShowPanel('gs-quiz');
+}
+
+function gsAddMessage(role,text){
+  gsChatHistory.push({role,text});
+  const el=document.getElementById('gs-chat-messages');
+  const div=document.createElement('div');
+  div.className=role==='user'?'gs-msg gs-msg-user':'gs-msg gs-msg-ai';
+  div.textContent=text;
+  el.appendChild(div);
+  el.scrollTop=el.scrollHeight;
+}
+
+async function gsSend(){
+  const input=document.getElementById('gs-chat-input');
+  const text=input.value.trim();
+  if(!text)return;
+  input.value='';
+  gsAddMessage('user',text);
+  const btn=document.getElementById('gs-send-btn');
+  btn.disabled=true;
+  const msgs=document.getElementById('gs-chat-messages');
+  const typing=document.createElement('div');
+  typing.className='gs-msg-typing';
+  typing.textContent='GenieScan™ is thinking…';
+  msgs.appendChild(typing);msgs.scrollTop=msgs.scrollHeight;
+  const apiMsgs=gsChatHistory.filter(m=>m.role==='user'||m.role==='ai')
+    .map(m=>({role:m.role==='ai'?'assistant':'user',content:m.text}));
+  try{
+    const res=await fetch('/.netlify/functions/claude',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({system:gsChatSystem,messages:apiMsgs})
+    });
+    if(!res.ok)throw new Error('API '+res.status);
+    const data=await res.json();
+    typing.remove();
+    gsAddMessage('ai',data.content);
+  }catch(err){
+    typing.remove();
+    gsAddMessage('ai','Something went wrong. Please try again.');
+  }finally{btn.disabled=false;}
+}
+
+function gsChatKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();gsSend();}}
+
 
 // ── FORMULERY DATA ──
 const fGoals=[
@@ -558,42 +731,13 @@ function renderFResult(){
 }
 function fReset(){fS={goal:null,base:null,actives:[],holds:[]};fGo(1);renderFGoals();}
 
-// ── HAIRID DATA ──
-const hDiscItems=[
-  {id:'porosity',name:'My porosity type',sub:'How hair absorbs moisture'},
-  {id:'texture',name:'My exact curl type',sub:'More specific than I thought'},
-  {id:'damage',name:'Hidden damage',sub:'Heat or chemical history'},
-  {id:'products',name:'Wrong products',sub:"I've been using the wrong things"},
-  {id:'scalp',name:'Scalp health',sub:'It affects everything'},
-  {id:'routine',name:'Routine gaps',sub:"What I've been missing"}
-];
-const discInsights={
-  porosity:"Porosity is the most overlooked factor in hair care — it determines how products enter and stay in your hair. Now that you know yours, every product choice gets smarter.",
-  texture:"Knowing your exact curl type helps you find communities, techniques, and products built specifically for your pattern.",
-  damage:"Damage doesn't mean your hair is broken — it means it needs targeted protein and moisture. Your HairID results show exactly how.",
-  products:"Most products aren't formulated for textured hair. With your profile you can filter for what your hair actually needs.",
-  scalp:"A healthy scalp is the foundation of everything. If your scalp is off, growth, moisture retention, and breakage all suffer.",
-  routine:"Routine gaps — skipping deep conditioning, not sealing after washing — are usually why hair doesn't retain length."
-};
-let hSel=null;
-function renderHDisc(){
-  document.getElementById('h-discoveries').innerHTML=hDiscItems.map(d=>`
-    <div class="opt${hSel===d.id?' sel-teal':''}" onclick="hSelect('${d.id}')">
-      <div class="opt-name">${d.name}</div><div class="opt-desc">${d.sub}</div></div>`).join('');
-}
-function hSelect(id){
-  hSel=hSel===id?null:id;renderHDisc();
-  document.getElementById('h-insight').innerHTML=hSel&&discInsights[hSel]
-    ?`<div class="insight insight-teal" style="margin-top:10px">${discInsights[hSel]}</div>`:'';
-}
-
 // ── BUILD IT DATA ──
 const bProbs=[
-  {id:'access',name:'Product access',sub:'Can\'t find products that work for me'},
-  {id:'ingredients',name:'Ingredient confusion',sub:'I don\'t know what\'s in my products'},
-  {id:'time',name:'No time to style',sub:'Need faster routines'},
-  {id:'damage',name:'Hair damage',sub:'Heat, color, or chemical damage'},
-  {id:'cost',name:'Cost barrier',sub:'Quality products are too expensive'},
+  {id:'sweat',name:'Sweat + hair',sub:'Products that survive workouts'},
+  {id:'helmet',name:'Helmet hair',sub:'Protecting styles under gear'},
+  {id:'time',name:'No time to style',sub:'Fast routines for athletes'},
+  {id:'pool',name:'Chlorine damage',sub:'Swimming + textured hair'},
+  {id:'products',name:'Wrong products',sub:'Nothing made for us'},
   {id:'custom',name:'Something else',sub:'I have my own idea'}
 ];
 const bSols=[
@@ -649,55 +793,21 @@ function bVote(id){
 }
 function bReset(){bS={problem:null,solution:null};bIdeas=[];bGo(1);renderBProbs();}
 
-// ── NAME CAPTURE ──
-let studentName = '';
-function startApp(){
-  const val = document.getElementById('student-name-input').value.trim();
-  studentName = val || 'friend';
-  document.getElementById('name-screen').style.display = 'none';
-  document.getElementById('student-name-display').textContent = studentName + ' · BeautyTech U™';
-  // Update all name spans in reflections
-  ['r1-name','r2-name','r3-name'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el) el.textContent = ', ' + studentName;
-  });
-}
-
-// ── REFLECTION SCREENS ──
-function showReflect(num){
-  // Hide all modules and reflections
-  [1,2,3,4,5].forEach(i=>document.getElementById('mod-'+i)&&document.getElementById('mod-'+i).classList.remove('on'));
-  ['reflect-1','reflect-2','reflect-3'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el) el.classList.remove('on');
-  });
-  const r=document.getElementById('reflect-'+num);
-  if(r){r.classList.add('on');window.scrollTo({top:0,behavior:'smooth'});}
-}
-
 // ── MODULE NAV ──
 function goMod(n){
-  [1,2,3,4,5].forEach(i=>{
-    const m=document.getElementById('mod-'+i);
-    if(m) m.classList.remove('on');
+  [1,2,3,4].forEach(i=>{
+    document.getElementById('mod-'+i).classList.remove('on');
     const t=document.getElementById('nav-'+i);
-    if(t) t.classList.remove('active','done');
+    t.classList.remove('active','done');
   });
-  ['reflect-1','reflect-2','reflect-3'].forEach(id=>{
-    const el=document.getElementById(id);
-    if(el) el.classList.remove('on');
-  });
-  for(let i=1;i<n;i++){const t=document.getElementById('nav-'+i);if(t)t.classList.add('done');}
-  const nt=document.getElementById('nav-'+n);
-  if(nt) nt.classList.add('active');
-  const nm=document.getElementById('mod-'+n);
-  if(nm) nm.classList.add('on');
-  const pcts={1:'20',2:'40',3:'60',4:'80',5:'100'};
-  document.getElementById('prog').style.width=(pcts[n]||'20')+'%';
+  for(let i=1;i<n;i++)document.getElementById('nav-'+i).classList.add('done');
+  document.getElementById('nav-'+n).classList.add('active');
+  document.getElementById('mod-'+n).classList.add('on');
+  document.getElementById('prog').style.width=(n===1?'25':n===2?'50':n===3?'75':'100')+'%';
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-renderHDisc();
+gsRenderAll();
 renderFGoals();
 renderBProbs();
 
