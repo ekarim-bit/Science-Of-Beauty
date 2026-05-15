@@ -140,6 +140,38 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
 .pdf-viewer-wrap{width:100%;border:1.5px solid var(--border);border-radius:10px;overflow:hidden;background:#fff}
 .pdf-viewer{width:100%;height:75vh;border:none;display:block}
 @media(max-width:500px){.pdf-viewer{height:60vh}}
+
+/* ── GenieScan™ ── */
+.gs-panel{}
+.gs-loading-wrap{text-align:center;padding:3rem 1rem}
+.gs-spinner{width:44px;height:44px;border:3px solid rgba(216,64,201,0.18);border-top-color:var(--magenta);border-radius:50%;animation:gs-spin 0.85s linear infinite;margin:0 auto 1.25rem}
+@keyframes gs-spin{to{transform:rotate(360deg)}}
+.gs-loading-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--near-black);margin-bottom:6px}
+.gs-loading-sub{font-size:13px;color:var(--slate)}
+.gs-profile-card{border:1.5px solid var(--border);border-radius:12px;padding:1.5rem;background:#fff;margin-bottom:12px}
+.gs-profile-name{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:var(--near-black);margin-bottom:4px}
+.gs-profile-tagline{font-size:14px;color:var(--magenta);font-weight:600;margin-bottom:1rem;line-height:1.5}
+.gs-profile-summary{font-size:13px;color:var(--slate);line-height:1.65;margin-bottom:1rem}
+.gs-insight-list{list-style:none;margin-bottom:1rem;padding:0}
+.gs-insight-list li{font-size:13px;color:var(--near-black);padding:7px 0 7px 22px;position:relative;border-bottom:1px solid var(--border);line-height:1.5}
+.gs-insight-list li:last-child{border-bottom:none}
+.gs-insight-list li::before{content:'→';position:absolute;left:0;color:var(--magenta);font-weight:700}
+.gs-affirmation{background:var(--near-black);border-radius:8px;padding:14px 18px;font-size:13px;color:#fff;font-style:italic;line-height:1.65;text-align:center;margin-top:14px}
+.gs-chat-messages{min-height:180px;max-height:360px;overflow-y:auto;border:1.5px solid var(--border);border-radius:10px;padding:14px;background:#fff;margin-bottom:10px;display:flex;flex-direction:column;gap:10px}
+.gs-msg{max-width:86%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.55}
+.gs-msg-user{background:var(--magenta);color:#fff;align-self:flex-end;border-bottom-right-radius:3px}
+.gs-msg-ai{background:var(--off-white);color:var(--near-black);align-self:flex-start;border-bottom-left-radius:3px;border:1px solid var(--border)}
+.gs-msg-typing{background:var(--off-white);color:var(--slate);align-self:flex-start;border:1px solid var(--border);border-radius:12px;padding:10px 14px;font-size:13px;font-style:italic}
+.gs-chat-input-row{display:flex;gap:8px;align-items:flex-end}
+.gs-chat-textarea{flex:1;border:1.5px solid var(--border);border-radius:8px;padding:10px 12px;font-size:13px;font-family:'DM Sans',sans-serif;color:var(--near-black);background:#fff;resize:none;min-height:44px;margin-bottom:0}
+.gs-chat-textarea:focus{outline:none;border-color:var(--magenta)}
+.gs-chat-send-btn{padding:10px 18px;border-radius:8px;background:var(--magenta);color:#fff;border:none;font-size:13px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;white-space:nowrap;height:44px}
+.gs-chat-send-btn:hover{background:var(--magenta-dk)}
+.gs-chat-send-btn:disabled{opacity:0.45;cursor:not-allowed}
+.gs-context-pill{display:inline-flex;align-items:center;gap:6px;background:#FDF0FC;border:1px solid #F0B0EC;border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;color:var(--magenta-dk);margin-bottom:12px}
+.gs-starter-prompts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
+.gs-starter{padding:6px 12px;border-radius:16px;border:1.5px solid var(--border);background:#fff;font-size:11px;color:var(--slate);cursor:pointer;font-family:'DM Sans',sans-serif}
+.gs-starter:hover{border-color:var(--magenta);color:var(--magenta)}
 </style>
 </head>
 <body>
@@ -157,7 +189,7 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
 
 <div class="progress-wrap">
   <div class="module-tabs">
-    <div class="tab active" id="nav-1" onclick="goMod(1)">HairID&#x2122; scan</div>
+    <div class="tab active" id="nav-1" onclick="goMod(1)">GenieScan&#x2122;</div>
     <div class="tab" id="nav-2" onclick="goMod(2)">Formulery&#x2122; lab</div>
     <div class="tab" id="nav-3" onclick="goMod(3)">Build it</div>
     <div class="tab" id="nav-4" onclick="goMod(4)">My workbook</div>
@@ -167,37 +199,84 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
 
 <main class="main">
 
-  <!-- MODULE 1: HAIRID -->
+  <!-- MODULE 1: GENIESCAN -->
   <div class="module on" id="mod-1">
-    <div class="mod-header">
-      <div class="mod-badge badge-pink">30&#8211;50 min &middot; hair technology + AI</div>
-      <div class="mod-title">MYAVANA HairID&#x2122; scan</div>
-      <div class="mod-sub">Real AI-powered hair analysis &#8212; exclusively through The Beauty Genie&#174;</div>
+
+    <!-- QUIZ -->
+    <div id="gs-quiz">
+      <div class="mod-header">
+        <div class="mod-badge badge-pink">5 min &middot; AI hair analysis</div>
+        <div class="mod-title">GenieScan&#x2122;</div>
+        <div class="mod-sub">Answer a few questions &mdash; we&rsquo;ll build your personalized hair profile</div>
+      </div>
+
+      <div class="q-label">What&rsquo;s your hair type?</div>
+      <div class="opt-grid" id="gs-type-opts"></div>
+
+      <div class="q-label" style="margin-top:1rem">Hair porosity</div>
+      <div class="q-sub">How quickly does water absorb into your strands?</div>
+      <div class="opt-grid" id="gs-porosity-opts"></div>
+
+      <div class="q-label" style="margin-top:1rem">Hair density</div>
+      <div class="q-sub">How much hair do you have on your scalp?</div>
+      <div class="opt-grid" id="gs-density-opts"></div>
+
+      <div class="q-label" style="margin-top:1rem">Strand texture</div>
+      <div class="q-sub">How thick is each individual strand?</div>
+      <div class="opt-grid" id="gs-texture-opts"></div>
+
+      <div class="q-label" style="margin-top:1rem">Hair goals <span style="font-weight:400;color:var(--slate)">&mdash; pick all that apply</span></div>
+      <div class="opt-grid" id="gs-goals-opts"></div>
+
+      <div class="btn-row">
+        <button class="btn-p" onclick="gsGenerate()">Generate my profile &rarr;</button>
+      </div>
     </div>
-    <div class="insight insight-blue" style="background:#E6F1FB;color:#185FA5;margin-bottom:1.25rem">
-      This module uses the real MYAVANA HairID&#x2122; platform &#8212; the same AI technology used by professional stylists. Your TBG exclusive access is ready below.
+
+    <!-- LOADING -->
+    <div id="gs-loading" style="display:none">
+      <div class="gs-loading-wrap">
+        <div class="gs-spinner"></div>
+        <div class="gs-loading-title">Analyzing your hair&hellip;</div>
+        <div class="gs-loading-sub">GenieScan&#x2122; is building your personalized profile</div>
+      </div>
     </div>
-    <div class="myavana-box">
-      <div class="myavana-title">Ready to scan your hair?</div>
-      <div class="myavana-sub">MYAVANA HairID&#x2122; uses AI to analyze your curl pattern, porosity, and hair needs &#8212; then builds your personalized hair profile. This technology was built by a Black woman, for us.</div>
-      <a class="btn-myavana" href="https://myavana.tech/beautygenie" target="_blank" rel="noopener">Launch HairID&#x2122; scan &rarr;</a>
+
+    <!-- PROFILE -->
+    <div id="gs-profile" style="display:none">
+      <div class="mod-header">
+        <div class="mod-badge badge-pink">Your GenieScan&#x2122; results</div>
+        <div class="mod-title">Your hair profile</div>
+      </div>
+      <div id="gs-profile-result"></div>
+      <div class="btn-row">
+        <button class="btn-p" onclick="gsOpenChat()">Chat with GenieScan&#x2122; &rarr;</button>
+        <button class="btn-s" onclick="gsRetakeQuiz()">Retake quiz</button>
+      </div>
     </div>
-    <div class="section-lbl">What you'll do inside</div>
-    <div class="steps-visual">
-      <div class="step-item"><div class="step-num">1</div><div class="step-text">Answer questions about your hair texture, thickness, and history<span>Takes about 3&#8211;5 minutes</span></div></div>
-      <div class="step-item"><div class="step-num">2</div><div class="step-text">AI analyzes your responses and builds your hair data profile<span>Same engine used by professional stylists</span></div></div>
-      <div class="step-item"><div class="step-num">3</div><div class="step-text">You receive personalized product and routine recommendations<span>Based on your actual hair data &#8212; not a generic quiz</span></div></div>
-      <div class="step-item"><div class="step-num">4</div><div class="step-text">Come back here and share what you discovered<span>We&#8217;ll connect your HairID&#x2122; results to the formula you build next</span></div></div>
+
+    <!-- CHAT -->
+    <div id="gs-chat" style="display:none">
+      <div class="mod-header">
+        <div class="mod-badge badge-pink">GenieScan&#x2122; AI</div>
+        <div class="mod-title">Ask your hair anything</div>
+        <div class="mod-sub">GenieScan&#x2122; already knows your profile &mdash; ask away</div>
+      </div>
+      <div id="gs-context-pill"></div>
+      <div class="gs-starter-prompts" id="gs-starters"></div>
+      <div class="gs-chat-messages" id="gs-chat-messages"></div>
+      <div class="gs-chat-input-row">
+        <textarea class="gs-chat-textarea" id="gs-chat-input" rows="2" placeholder="Ask about your hair, routine, products&hellip;" onkeydown="gsChatKey(event)"></textarea>
+        <button class="gs-chat-send-btn" id="gs-send-btn" onclick="gsSend()">Send</button>
+      </div>
+      <div class="btn-row" style="margin-top:0.75rem">
+        <button class="btn-s" onclick="gsShowPanel('gs-profile')">&larr; View my profile</button>
+        <button class="btn-p" onclick="goMod(2)">Next: build your formula &rarr;</button>
+      </div>
     </div>
-    <div class="divider"></div>
-    <div class="q-label">After your scan &#8212; what surprised you most?</div>
-    <div class="q-sub">Select what you discovered about your hair</div>
-    <div class="opt-grid" id="h-discoveries"></div>
-    <div id="h-insight"></div>
-    <div class="btn-row">
-      <button class="btn-p" onclick="goMod(2)">Next: build your formula &rarr;</button>
-    </div>
+
   </div>
+
 
   <!-- MODULE 2: FORMULERY -->
   <div class="module" id="mod-2">
@@ -214,7 +293,7 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
     </div>
     <div class="step-panel on" id="f-p1">
       <div class="q-label">What does your hair need most right now?</div>
-      <div class="q-sub">Use what you learned from your HairID&#x2122; scan to guide your answer</div>
+      <div class="q-sub">Use what you learned from your GenieScan&#x2122; to guide your answer</div>
       <div class="opt-grid" id="f-goals"></div>
       <div class="btn-row"><button class="btn-p teal" onclick="fGo(2)">Next &rarr;</button></div>
     </div>
@@ -318,10 +397,225 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
   <div class="waitlist-text">BeautyTech U&#x2122; Waitlist Now Open &middot; <a href="https://bit.ly/BTUwaitlist2026" target="_blank">bit.ly/BTUwaitlist2026</a></div>
 </div>
 <footer class="site-footer">
-  <div class="footer-text">&#169; 2026 The Beauty Genie&#174; &middot; BeautyTech U&#x2122; &middot; <a href="https://beautywishesinabox.com" target="_blank">beautywishesinabox.com</a> &middot; In partnership with SOUL Programs &amp; MYAVANA &amp; Formulery&#x2122;</div>
+  <div class="footer-text">&#169; 2026 The Beauty Genie&#174; &middot; BeautyTech U&#x2122; &middot; <a href="https://beautywishesinabox.com" target="_blank">beautywishesinabox.com</a> &middot; In partnership with SOUL Programs &amp; Formulery&#x2122;</div>
 </footer>
 
 <script>
+
+// ── GENIESCAN DATA ──
+const gsHairTypes=[
+  {id:'straight',name:'Straight',sub:'Type 1 (1A–1C)'},
+  {id:'wavy',name:'Wavy',sub:'Type 2 (2A–2C)'},
+  {id:'curly',name:'Curly',sub:'Type 3 (3A–3C)'},
+  {id:'coily',name:'Coily',sub:'Type 4 (4A–4C)'}
+];
+const gsPorosity=[
+  {id:'low',name:'Low porosity',sub:'Water beads up, slow to absorb'},
+  {id:'normal',name:'Normal porosity',sub:'Absorbs and retains moisture well'},
+  {id:'high',name:'High porosity',sub:'Absorbs fast, loses moisture fast'}
+];
+const gsDensity=[
+  {id:'thin',name:'Thin',sub:'Scalp is easily visible'},
+  {id:'medium',name:'Medium',sub:'Some scalp visible in sections'},
+  {id:'thick',name:'Thick',sub:'Scalp rarely visible'}
+];
+const gsTexture=[
+  {id:'fine',name:'Fine',sub:'Strands feel delicate, easily weighed down'},
+  {id:'medium',name:'Medium',sub:'Average strand thickness'},
+  {id:'coarse',name:'Coarse',sub:'Strands feel strong or wiry'}
+];
+const gsGoals=[
+  {id:'moisture',name:'Deep moisture',sub:'Hydration + softness'},
+  {id:'growth',name:'Length retention',sub:'Grow and keep length'},
+  {id:'frizz',name:'Frizz control',sub:'Humidity resistance'},
+  {id:'scalp',name:'Scalp health',sub:'Clarity + growth support'},
+  {id:'definition',name:'Curl definition',sub:'Pattern pop + hold'},
+  {id:'strength',name:'Strength & repair',sub:'Reduce breakage'},
+  {id:'heat',name:'Heat protection',sub:'Safe styling'}
+];
+const gsStarterPrompts=[
+  'What products should I try first?',
+  'What ingredients should I avoid?',
+  'How do I fix dry ends?',
+  'Best wash day routine for my hair?',
+  'How do I retain moisture overnight?'
+];
+
+let gsState={type:null,porosity:null,density:null,texture:null,goals:[]};
+let gsProfile=null;
+let gsChatHistory=[];
+let gsChatSystem='';
+
+function gsRenderAll(){
+  gsRenderOpts('gs-type-opts',gsHairTypes,'type');
+  gsRenderOpts('gs-porosity-opts',gsPorosity,'porosity');
+  gsRenderOpts('gs-density-opts',gsDensity,'density');
+  gsRenderOpts('gs-texture-opts',gsTexture,'texture');
+  gsRenderGoals();
+}
+function gsRenderOpts(elId,items,field){
+  document.getElementById(elId).innerHTML=items.map(item=>`
+    <div class="opt${gsState[field]===item.id?' sel':''}" onclick="gsSelect('${field}','${item.id}')">
+      <div class="opt-name">${item.name}</div><div class="opt-desc">${item.sub}</div>
+    </div>`).join('');
+}
+function gsSelect(field,id){
+  const map={type:gsHairTypes,porosity:gsPorosity,density:gsDensity,texture:gsTexture};
+  gsState[field]=gsState[field]===id?null:id;
+  gsRenderOpts('gs-'+field+'-opts',map[field],field);
+}
+function gsRenderGoals(){
+  document.getElementById('gs-goals-opts').innerHTML=gsGoals.map(g=>`
+    <div class="opt${gsState.goals.includes(g.id)?' sel':''}" onclick="gsToggleGoal('${g.id}')">
+      <div class="opt-name">${g.name}</div><div class="opt-desc">${g.sub}</div>
+    </div>`).join('');
+}
+function gsToggleGoal(id){
+  gsState.goals=gsState.goals.includes(id)?gsState.goals.filter(x=>x!==id):[...gsState.goals,id];
+  gsRenderGoals();
+}
+
+async function gsGenerate(){
+  if(!gsState.type&&!gsState.porosity){
+    alert('Please tell us a little about your hair first!');return;
+  }
+  gsShowPanel('gs-loading');
+  const tL=gsHairTypes.find(x=>x.id===gsState.type)?.name||'Not specified';
+  const pL=gsPorosity.find(x=>x.id===gsState.porosity)?.name||'Not specified';
+  const dL=gsDensity.find(x=>x.id===gsState.density)?.name||'Not specified';
+  const xL=gsTexture.find(x=>x.id===gsState.texture)?.name||'Not specified';
+  const gL=gsState.goals.map(id=>gsGoals.find(g=>g.id===id)?.name).filter(Boolean);
+
+  const system=`You are GenieScan™, BeautyTech U™'s AI hair analysis engine built for Black women and textured hair communities. Generate a personalized hair profile based on user inputs.
+
+Respond with ONLY valid JSON — no markdown, no code fences, no explanation. Exactly this shape:
+{"profileName":"empowering specific name for this hair type (e.g. 'The Type 4C Hydration Queen')","tagline":"one empowering sentence that captures their hair identity","hairSummary":"2-3 sentences describing their specific hair combination and what it means for care — be specific to their type and porosity","keyInsights":["insight about their porosity","insight about density + texture combo","insight connecting their goals to their type"],"topPriority":"the single most important thing for their hair right now — be specific, not generic","ingredients":["best ingredient for their profile","second ingredient","third ingredient"],"avoid":["ingredient or practice to avoid for their type","second thing to avoid"],"affirmation":"a warm, real closing affirmation that speaks to the Black hair care experience"}
+
+Be specific — reference their actual hair type and porosity by name. Cultural fluency matters. Warm, confident, never generic.`;
+
+  const userMsg=`My hair: Type: ${tL} | Porosity: ${pL} | Density: ${dL} | Texture: ${xL} | Goals: ${gL.length?gL.join(', '):'General health'}\n\nGenerate my GenieScan™ profile.`;
+
+  try{
+    const res=await fetch('/.netlify/functions/claude',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({system,messages:[{role:'user',content:userMsg}]})
+    });
+    if(!res.ok)throw new Error('API '+res.status);
+    const data=await res.json();
+    gsProfile=JSON.parse(data.content);
+    gsChatSystem=`You are GenieScan™, BeautyTech U™'s AI hair expert. You already know this user's hair profile:\n\nProfile: ${gsProfile.profileName}\nHair type: ${tL} | Porosity: ${pL} | Density: ${dL} | Texture: ${xL}\nGoals: ${gL.join(', ')||'General health'}\nKey insights: ${gsProfile.keyInsights.join('; ')}\nTop priority: ${gsProfile.topPriority}\nReach for: ${gsProfile.ingredients.join(', ')}\nAvoid: ${gsProfile.avoid.join(', ')}\n\nAnswer questions as if you know their hair personally. Be warm, direct, culturally fluent. Speak to the experience of Black women and textured hair communities. Keep answers conversational — 2-4 sentences unless they ask for detail.`;
+    gsChatHistory=[];
+    gsRenderProfile();
+    gsShowPanel('gs-profile');
+  }catch(err){
+    gsShowPanel('gs-quiz');
+    alert('Something went wrong. Please check your connection and try again.');
+  }
+}
+
+function gsRenderProfile(){
+  if(!gsProfile)return;
+  const p=gsProfile;
+  document.getElementById('gs-profile-result').innerHTML=`
+    <div class="gs-profile-card">
+      <div class="gs-profile-name">${p.profileName}</div>
+      <div class="gs-profile-tagline">${p.tagline}</div>
+      <div class="gs-profile-summary">${p.hairSummary}</div>
+      <div class="section-lbl">Key insights</div>
+      <ul class="gs-insight-list">${p.keyInsights.map(i=>`<li>${i}</li>`).join('')}</ul>
+      <div class="section-lbl">Top priority right now</div>
+      <div class="insight insight-pink" style="margin-bottom:1rem">${p.topPriority}</div>
+      <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:1rem">
+        <div style="flex:1;min-width:130px">
+          <div class="section-lbl">Ingredients to reach for</div>
+          ${p.ingredients.map(i=>`<span class="pill pill-teal">${i}</span>`).join('')}
+        </div>
+        <div style="flex:1;min-width:130px">
+          <div class="section-lbl">Avoid</div>
+          ${p.avoid.map(i=>`<span class="pill" style="background:#FEF3E2;color:#854F0B">${i}</span>`).join('')}
+        </div>
+      </div>
+      <div class="gs-affirmation">&ldquo;${p.affirmation}&rdquo;</div>
+    </div>
+    <p style="font-size:11px;color:#4C5564;text-align:center;margin-top:4px">Powered by GenieScan&#x2122; &middot; BeautyTech U&#x2122;</p>`;
+}
+
+function gsOpenChat(){
+  gsShowPanel('gs-chat');
+  if(gsProfile){
+    document.getElementById('gs-context-pill').innerHTML=
+      `<div class="gs-context-pill">&#10022; GenieScan&#x2122; knows your profile: ${gsProfile.profileName}</div>`;
+  }
+  document.getElementById('gs-starters').innerHTML=
+    gsStarterPrompts.map(q=>`<div class="gs-starter" onclick="gsUseStarter(this,'${q.replace(/'/g,"\\'")}')">${q}</div>`).join('');
+  if(gsChatHistory.length===0){
+    gsAddMessage('ai',`Hey! I've read your profile — you're ${gsProfile?.profileName||'unique'}. Ask me anything about your hair, your routine, or what to try next.`);
+  }
+}
+
+function gsUseStarter(el,text){
+  document.getElementById('gs-chat-input').value=text;
+  el.parentElement.style.display='none';
+  gsSend();
+}
+
+function gsShowPanel(id){
+  ['gs-quiz','gs-loading','gs-profile','gs-chat'].forEach(p=>{
+    document.getElementById(p).style.display=p===id?'block':'none';
+  });
+}
+
+function gsRetakeQuiz(){
+  gsState={type:null,porosity:null,density:null,texture:null,goals:[]};
+  gsProfile=null;gsChatHistory=[];
+  gsRenderAll();
+  gsShowPanel('gs-quiz');
+}
+
+function gsAddMessage(role,text){
+  gsChatHistory.push({role,text});
+  const el=document.getElementById('gs-chat-messages');
+  const div=document.createElement('div');
+  div.className=role==='user'?'gs-msg gs-msg-user':'gs-msg gs-msg-ai';
+  div.textContent=text;
+  el.appendChild(div);
+  el.scrollTop=el.scrollHeight;
+}
+
+async function gsSend(){
+  const input=document.getElementById('gs-chat-input');
+  const text=input.value.trim();
+  if(!text)return;
+  input.value='';
+  gsAddMessage('user',text);
+  const btn=document.getElementById('gs-send-btn');
+  btn.disabled=true;
+  const msgs=document.getElementById('gs-chat-messages');
+  const typing=document.createElement('div');
+  typing.className='gs-msg-typing';
+  typing.textContent='GenieScan™ is thinking…';
+  msgs.appendChild(typing);msgs.scrollTop=msgs.scrollHeight;
+  const apiMsgs=gsChatHistory.filter(m=>m.role==='user'||m.role==='ai')
+    .map(m=>({role:m.role==='ai'?'assistant':'user',content:m.text}));
+  try{
+    const res=await fetch('/.netlify/functions/claude',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({system:gsChatSystem,messages:apiMsgs})
+    });
+    if(!res.ok)throw new Error('API '+res.status);
+    const data=await res.json();
+    typing.remove();
+    gsAddMessage('ai',data.content);
+  }catch(err){
+    typing.remove();
+    gsAddMessage('ai','Something went wrong. Please try again.');
+  }finally{btn.disabled=false;}
+}
+
+function gsChatKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();gsSend();}}
+
 
 // ── FORMULERY DATA ──
 const fGoals=[
@@ -437,35 +731,6 @@ function renderFResult(){
 }
 function fReset(){fS={goal:null,base:null,actives:[],holds:[]};fGo(1);renderFGoals();}
 
-// ── HAIRID DATA ──
-const hDiscItems=[
-  {id:'porosity',name:'My porosity type',sub:'How hair absorbs moisture'},
-  {id:'texture',name:'My exact curl type',sub:'More specific than I thought'},
-  {id:'damage',name:'Hidden damage',sub:'Heat or chemical history'},
-  {id:'products',name:'Wrong products',sub:"I've been using the wrong things"},
-  {id:'scalp',name:'Scalp health',sub:'It affects everything'},
-  {id:'routine',name:'Routine gaps',sub:"What I've been missing"}
-];
-const discInsights={
-  porosity:"Porosity is the most overlooked factor in hair care — it determines how products enter and stay in your hair. Now that you know yours, every product choice gets smarter.",
-  texture:"Knowing your exact curl type helps you find communities, techniques, and products built specifically for your pattern.",
-  damage:"Damage doesn't mean your hair is broken — it means it needs targeted protein and moisture. Your HairID results show exactly how.",
-  products:"Most products aren't formulated for textured hair. With your profile you can filter for what your hair actually needs.",
-  scalp:"A healthy scalp is the foundation of everything. If your scalp is off, growth, moisture retention, and breakage all suffer.",
-  routine:"Routine gaps — skipping deep conditioning, not sealing after washing — are usually why hair doesn't retain length."
-};
-let hSel=null;
-function renderHDisc(){
-  document.getElementById('h-discoveries').innerHTML=hDiscItems.map(d=>`
-    <div class="opt${hSel===d.id?' sel-teal':''}" onclick="hSelect('${d.id}')">
-      <div class="opt-name">${d.name}</div><div class="opt-desc">${d.sub}</div></div>`).join('');
-}
-function hSelect(id){
-  hSel=hSel===id?null:id;renderHDisc();
-  document.getElementById('h-insight').innerHTML=hSel&&discInsights[hSel]
-    ?`<div class="insight insight-teal" style="margin-top:10px">${discInsights[hSel]}</div>`:'';
-}
-
 // ── BUILD IT DATA ──
 const bProbs=[
   {id:'sweat',name:'Sweat + hair',sub:'Products that survive workouts'},
@@ -542,7 +807,7 @@ function goMod(n){
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-renderHDisc();
+gsRenderAll();
 renderFGoals();
 renderBProbs();
 
