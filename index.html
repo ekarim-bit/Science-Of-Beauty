@@ -283,10 +283,14 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
       <img id="gs-photo-preview" class="gs-photo-preview" alt="Hair photo preview" />
       <div id="gs-photo-zone" class="gs-photo-zone" onclick="document.getElementById('gs-file-input').click()">
         <div class="gs-photo-icon">📸</div>
-        <div class="gs-photo-title">Tap to take or upload a photo</div>
-        <div class="gs-photo-sub">Supports JPEG, PNG, HEIC &mdash; from camera or photo library</div>
+        <div class="gs-photo-title">Tap to upload a photo</div>
+        <div class="gs-photo-sub">Choose from your camera roll or files &mdash; JPEG, PNG, HEIC</div>
       </div>
-      <input type="file" id="gs-file-input" accept="image/*" capture="environment" style="display:none" onchange="gsPhotoSelected(this)">
+      <input type="file" id="gs-file-input" accept="image/*" style="display:none" onchange="gsPhotoSelected(this)">
+      <input type="file" id="gs-camera-input" accept="image/*" capture="environment" style="display:none" onchange="gsPhotoSelected(this)">
+      <div style="text-align:center;margin-bottom:0.5rem">
+        <button class="btn-s" style="font-size:12px;padding:7px 16px" onclick="document.getElementById('gs-camera-input').click()">📷 Open camera</button>
+      </div>
       <div class="btn-row" id="gs-photo-next-row" style="display:none">
         <button class="btn-p" onclick="gsShowPanel('gs-questions')">Looks good &mdash; next &rarr;</button>
         <button class="btn-s" onclick="gsRemovePhoto()">Remove photo</button>

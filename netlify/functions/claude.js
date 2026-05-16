@@ -15,6 +15,15 @@ exports.handler = async (event) => {
     return { statusCode: 405, headers: cors, body: 'Method not allowed' };
   }
 
+  const apiKey = process.env.ANTHROPIC_API_KEY;
+  if (!apiKey) {
+    return {
+      statusCode: 500,
+      headers: { ...cors, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ error: 'API key not configured. Set ANTHROPIC_API_KEY in Netlify environment variables.' }),
+    };
+  }
+
   try {
     const { messages, system, maxTokens } = JSON.parse(event.body);
 
@@ -33,7 +42,7 @@ exports.handler = async (event) => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'x-api-key': process.env.ANTHROPIC_API_KEY,
+            'x-api-key': apiKey,
             'anthropic-version': '2023-06-01',
             'Content-Length': Buffer.byteLength(payload),
           },
@@ -50,7 +59,8 @@ exports.handler = async (event) => {
     });
 
     if (result.status !== 200) {
-      throw new Error(`Anthropic API ${result.status}: ${result.body}`);
+      const errBody = JSON.parse(result.body);
+      throw new Error(`Anthropic API error ${result.status}: ${errBody?.error?.message || result.body}`);
     }
 
     const parsed = JSON.parse(result.body);
