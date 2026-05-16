@@ -910,8 +910,6 @@ function startApp(){
 }
 
 gsRenderAll();
-  gsShowPanel('gs-quiz');
-}
 
 function gsAddMessage(role,text){
   gsChatHistory.push({role,text});
@@ -1165,15 +1163,6 @@ function btuToggle(id){
     const hint=el.previousElementSibling?.querySelector('.btu-expand-hint');
     if(hint) hint.textContent='↑';
   }
-}
-
-// ── NAME CAPTURE ──
-let studentName = '';
-function startApp(){
-  const val = document.getElementById('student-name-input').value.trim();
-  studentName = val || 'friend';
-  document.getElementById('name-screen').style.display = 'none';
-  document.getElementById('student-name-display').textContent = studentName + ' · BeautyTech U™';
 }
 
 gsRenderAll();
