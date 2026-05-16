@@ -879,8 +879,15 @@ function gsShowPanel(id){
 
 function gsRetakeQuiz(){
   gsState={type:null,mix:null,porosity:null,density:null,texture:null,goals:[]};
-  gsProfile=null;gsChatHistory=[];
-  
+  gsProfile=null;gsChatHistory=[];gsPhotoData=null;
+  document.getElementById('gs-photo-preview').style.display='none';
+  document.getElementById('gs-photo-zone').style.display='block';
+  document.getElementById('gs-photo-next-row').style.display='none';
+  document.getElementById('gs-file-input').value='';
+  gsRenderAll();
+  gsShowPanel('gs-privacy');
+}
+
 // ── BTU TRACK TOGGLE ──
 function btuToggle(id){
   const el=document.getElementById(id);
