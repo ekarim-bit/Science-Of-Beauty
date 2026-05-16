@@ -221,8 +221,13 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
         <div class="mod-sub">Answer a few questions &mdash; we&rsquo;ll build your personalized hair profile</div>
       </div>
 
-      <div class="q-label">What&rsquo;s your hair type?</div>
+      <div class="q-label">What does your hair naturally do when air-dried with no products?</div>
+      <div class="q-sub">Pick the one that feels closest &mdash; there&rsquo;s no wrong answer</div>
       <div class="opt-grid" id="gs-type-opts"></div>
+
+      <div class="q-label" style="margin-top:1rem">Does your hair feel like a mix of textures?</div>
+      <div class="q-sub">Most textured hair is multi-pattern &mdash; this helps us get your profile right</div>
+      <div class="opt-grid" id="gs-mix-opts"></div>
 
       <div class="q-label" style="margin-top:1rem">Hair porosity</div>
       <div class="q-sub">How quickly does water absorb into your strands?</div>
@@ -459,10 +464,15 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
 
 // ── GENIESCAN DATA ──
 const gsHairTypes=[
-  {id:'straight',name:'Straight',sub:'Type 1 (1A–1C)'},
-  {id:'wavy',name:'Wavy',sub:'Type 2 (2A–2C)'},
-  {id:'curly',name:'Curly',sub:'Type 3 (3A–3C)'},
-  {id:'coily',name:'Coily',sub:'Type 4 (4A–4C)'}
+  {id:'flat',name:'Lies mostly flat',sub:'Little to no wave when air-dried'},
+  {id:'waves',name:'Forms loose waves',sub:'S-shapes that come and go'},
+  {id:'spirals',name:'Spirals into coils',sub:'Defined ringlets or corkscrews'},
+  {id:'shrinks',name:'Shrinks way up',sub:'Tight coils, zig-zags, or undefined texture'}
+];
+const gsMixOptions=[
+  {id:'one',name:'Mostly one pattern',sub:'My hair behaves pretty consistently'},
+  {id:'mix',name:'Definitely a mix',sub:'Different sections do different things'},
+  {id:'unsure',name:'Not sure yet',sub:'It changes or I haven't figured it out'}
 ];
 const gsPorosity=[
   {id:'low',name:'Low porosity',sub:'Water beads up, slow to absorb'},
@@ -496,13 +506,14 @@ const gsStarterPrompts=[
   'How do I retain moisture overnight?'
 ];
 
-let gsState={type:null,porosity:null,density:null,texture:null,goals:[]};
+let gsState={type:null,mix:null,porosity:null,density:null,texture:null,goals:[]};
 let gsProfile=null;
 let gsChatHistory=[];
 let gsChatSystem='';
 
 function gsRenderAll(){
   gsRenderOpts('gs-type-opts',gsHairTypes,'type');
+  gsRenderOpts('gs-mix-opts',gsMixOptions,'mix');
   gsRenderOpts('gs-porosity-opts',gsPorosity,'porosity');
   gsRenderOpts('gs-density-opts',gsDensity,'density');
   gsRenderOpts('gs-texture-opts',gsTexture,'texture');
@@ -515,7 +526,7 @@ function gsRenderOpts(elId,items,field){
     </div>`).join('');
 }
 function gsSelect(field,id){
-  const map={type:gsHairTypes,porosity:gsPorosity,density:gsDensity,texture:gsTexture};
+  const map={type:gsHairTypes,mix:gsMixOptions,porosity:gsPorosity,density:gsDensity,texture:gsTexture};
   gsState[field]=gsState[field]===id?null:id;
   gsRenderOpts('gs-'+field+'-opts',map[field],field);
 }
@@ -536,6 +547,7 @@ async function gsGenerate(){
   }
   gsShowPanel('gs-loading');
   const tL=gsHairTypes.find(x=>x.id===gsState.type)?.name||'Not specified';
+  const mL=gsMixOptions.find(x=>x.id===gsState.mix)?.name||'Not specified';
   const pL=gsPorosity.find(x=>x.id===gsState.porosity)?.name||'Not specified';
   const dL=gsDensity.find(x=>x.id===gsState.density)?.name||'Not specified';
   const xL=gsTexture.find(x=>x.id===gsState.texture)?.name||'Not specified';
@@ -548,7 +560,7 @@ Respond with ONLY valid JSON — no markdown, no code fences, no explanation. Ex
 
 Be specific — reference their actual hair type and porosity by name. Cultural fluency matters. Warm, confident, never generic.`;
 
-  const userMsg=`My hair: Type: ${tL} | Porosity: ${pL} | Density: ${dL} | Texture: ${xL} | Goals: ${gL.length?gL.join(', '):'General health'}\n\nGenerate my GenieScan™ profile.`;
+  const userMsg=`My hair: Natural pattern: ${tL} | Multi-texture: ${mL} | Porosity: ${pL} | Density: ${dL} | Strand texture: ${xL} | Goals: ${gL.length?gL.join(', '):'General health'}\n\nGenerate my GenieScan™ profile.`;
 
   try{
     const res=await fetch('/.netlify/functions/claude',{
@@ -559,7 +571,7 @@ Be specific — reference their actual hair type and porosity by name. Cultural 
     if(!res.ok)throw new Error('API '+res.status);
     const data=await res.json();
     gsProfile=JSON.parse(data.content);
-    gsChatSystem=`You are GenieScan™, BeautyTech U™'s AI hair expert. You already know this user's hair profile:\n\nProfile: ${gsProfile.profileName}\nHair type: ${tL} | Porosity: ${pL} | Density: ${dL} | Texture: ${xL}\nGoals: ${gL.join(', ')||'General health'}\nKey insights: ${gsProfile.keyInsights.join('; ')}\nTop priority: ${gsProfile.topPriority}\nReach for: ${gsProfile.ingredients.join(', ')}\nAvoid: ${gsProfile.avoid.join(', ')}\n\nAnswer questions as if you know their hair personally. Be warm, direct, culturally fluent. Speak to the experience of Black women and textured hair communities. Keep answers conversational — 2-4 sentences unless they ask for detail.`;
+    gsChatSystem=`You are GenieScan™, BeautyTech U™'s AI hair expert. You already know this user's hair profile:\n\nProfile: ${gsProfile.profileName}\nNatural pattern: ${tL} | Multi-texture: ${mL} | Porosity: ${pL} | Density: ${dL} | Texture: ${xL}\nGoals: ${gL.join(', ')||'General health'}\nKey insights: ${gsProfile.keyInsights.join('; ')}\nTop priority: ${gsProfile.topPriority}\nReach for: ${gsProfile.ingredients.join(', ')}\nAvoid: ${gsProfile.avoid.join(', ')}\n\nAnswer questions as if you know their hair personally. Be warm, direct, culturally fluent. Speak to the experience of Black women and textured hair communities. Keep answers conversational — 2-4 sentences unless they ask for detail.`;
     gsChatHistory=[];
     gsRenderProfile();
     gsShowPanel('gs-profile');
@@ -622,7 +634,7 @@ function gsShowPanel(id){
 }
 
 function gsRetakeQuiz(){
-  gsState={type:null,porosity:null,density:null,texture:null,goals:[]};
+  gsState={type:null,mix:null,porosity:null,density:null,texture:null,goals:[]};
   gsProfile=null;gsChatHistory=[];
   // ── NAME CAPTURE ──
 let studentName = '';
