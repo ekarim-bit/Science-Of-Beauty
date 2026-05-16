@@ -182,6 +182,28 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
 .btu-session{font-size:12px;color:var(--near-black);padding:6px 0 6px 14px;border-bottom:1px solid var(--border);position:relative;line-height:1.4}
 .btu-session:last-child{border-bottom:none}
 .btu-session::before{content:'→';position:absolute;left:0;color:var(--slate);font-size:11px}
+
+/* GenieScan photo + privacy */
+.gs-privacy-card{background:#fff;border:1.5px solid var(--border);border-radius:12px;padding:1.5rem;margin-bottom:1rem}
+.gs-privacy-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:700;color:var(--near-black);margin-bottom:6px}
+.gs-privacy-sub{font-size:13px;color:var(--slate);line-height:1.65;margin-bottom:1rem}
+.gs-privacy-list{list-style:none;padding:0;margin-bottom:1.25rem}
+.gs-privacy-list li{font-size:12px;color:var(--near-black);padding:5px 0 5px 20px;position:relative;border-bottom:1px solid var(--border);line-height:1.5}
+.gs-privacy-list li:last-child{border-bottom:none}
+.gs-privacy-list li::before{content:'✓';position:absolute;left:0;color:var(--teal);font-weight:700}
+.gs-photo-zone{border:2px dashed var(--border);border-radius:12px;padding:2rem;text-align:center;background:#FAFAFA;cursor:pointer;transition:border-color 0.2s;margin-bottom:1rem}
+.gs-photo-zone:hover{border-color:var(--magenta);background:#FDF8FF}
+.gs-photo-icon{font-size:36px;margin-bottom:10px}
+.gs-photo-title{font-size:15px;font-weight:600;color:var(--near-black);margin-bottom:4px}
+.gs-photo-sub{font-size:12px;color:var(--slate);line-height:1.5}
+.gs-photo-preview{width:100%;max-height:280px;object-fit:cover;border-radius:10px;margin-bottom:12px;display:none}
+.gs-photo-tips{background:var(--off-white);border-radius:8px;padding:12px 14px;margin-bottom:1rem}
+.gs-photo-tips-title{font-size:11px;font-weight:700;color:var(--slate);letter-spacing:0.07em;text-transform:uppercase;margin-bottom:6px}
+.gs-photo-tip{font-size:12px;color:var(--near-black);padding:3px 0 3px 16px;position:relative}
+.gs-photo-tip::before{content:'→';position:absolute;left:0;color:var(--magenta);font-weight:700;font-size:11px}
+.gs-skip-link{font-size:12px;color:var(--slate);text-decoration:underline;cursor:pointer;background:none;border:none;font-family:'DM Sans',sans-serif;margin-top:4px;display:inline-block}
+.gs-skip-link:hover{color:var(--near-black)}
+.gs-photo-badge{display:inline-flex;align-items:center;gap:6px;background:#E1F5EE;border:1px solid #A8DFD0;border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;color:#0F6E56;margin-bottom:12px}
 </style>
 </head>
 <body>
@@ -223,13 +245,65 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
   <!-- MODULE 1: GENIESCAN -->
   <div class="module on" id="mod-1">
 
-    <!-- QUIZ -->
-    <div id="gs-quiz">
+    <!-- PRIVACY NOTICE -->
+    <div id="gs-privacy">
       <div class="mod-header">
-        <div class="mod-badge badge-pink">5 min &middot; AI hair analysis</div>
+        <div class="mod-badge badge-pink">Before we begin</div>
         <div class="mod-title">GenieScan&#x2122;</div>
-        <div class="mod-sub">Answer a few questions &mdash; we&rsquo;ll build your personalized hair profile</div>
+        <div class="mod-sub">A quick note about how your information is used</div>
       </div>
+      <div class="gs-privacy-card">
+        <div class="gs-privacy-title">Your privacy matters</div>
+        <div class="gs-privacy-sub">GenieScan&#x2122; uses AI to analyze your hair and generate a personalized profile. Here&rsquo;s exactly what happens with your data:</div>
+        <ul class="gs-privacy-list">
+          <li>Photos and quiz answers are sent securely to the AI for analysis only</li>
+          <li>Your photo is <strong>not stored, saved, or shared</strong> with anyone</li>
+          <li>No account or personal information is required</li>
+          <li>Your hair profile exists only in this session &mdash; it disappears when you close the page</li>
+          <li>This experience is powered by Anthropic&rsquo;s Claude AI &mdash; <a href="https://www.anthropic.com/privacy" target="_blank" style="color:var(--magenta)">view their privacy policy</a></li>
+        </ul>
+        <button class="btn-p" style="width:100%" onclick="gsShowPanel('gs-photo')">I understand &mdash; let&rsquo;s go &rarr;</button>
+      </div>
+    </div>
+
+    <!-- PHOTO UPLOAD -->
+    <div id="gs-photo" style="display:none">
+      <div class="mod-header">
+        <div class="mod-badge badge-pink">Step 1 of 2 &middot; Hair photo</div>
+        <div class="mod-title">Show us your hair</div>
+        <div class="mod-sub">Our AI reads your curl pattern, texture, and density directly from the photo</div>
+      </div>
+      <div class="gs-photo-tips">
+        <div class="gs-photo-tips-title">For the best scan</div>
+        <div class="gs-photo-tip">Use natural light &mdash; no flash</div>
+        <div class="gs-photo-tip">Hair should be clean and air-dried with no products</div>
+        <div class="gs-photo-tip">Show your full hair or a close-up of your texture</div>
+        <div class="gs-photo-tip">Any angle works &mdash; crown, side, or nape</div>
+      </div>
+      <img id="gs-photo-preview" class="gs-photo-preview" alt="Hair photo preview" />
+      <div id="gs-photo-zone" class="gs-photo-zone" onclick="document.getElementById('gs-file-input').click()">
+        <div class="gs-photo-icon">📸</div>
+        <div class="gs-photo-title">Tap to take or upload a photo</div>
+        <div class="gs-photo-sub">Supports JPEG, PNG, HEIC &mdash; from camera or photo library</div>
+      </div>
+      <input type="file" id="gs-file-input" accept="image/*" capture="environment" style="display:none" onchange="gsPhotoSelected(this)">
+      <div class="btn-row" id="gs-photo-next-row" style="display:none">
+        <button class="btn-p" onclick="gsShowPanel('gs-questions')">Looks good &mdash; next &rarr;</button>
+        <button class="btn-s" onclick="gsRemovePhoto()">Remove photo</button>
+      </div>
+      <div style="text-align:center;margin-top:0.75rem">
+        <button class="gs-skip-link" onclick="gsSkipPhoto()">Skip photo &mdash; use questions only</button>
+      </div>
+    </div>
+
+    <!-- QUIZ QUESTIONS -->
+    <div id="gs-questions" style="display:none">
+      <div class="mod-header">
+        <div class="mod-badge badge-pink">Step 2 of 2 &middot; Hair profile</div>
+        <div class="mod-title">Tell us more</div>
+        <div class="mod-sub">These answers help GenieScan&#x2122; go deeper than what a photo can show</div>
+      </div>
+      <div id="gs-photo-badge-wrap"></div>
 
       <div class="q-label">What does your hair naturally do when air-dried with no products?</div>
       <div class="q-sub">Pick the one that feels closest &mdash; there&rsquo;s no wrong answer</div>
@@ -255,6 +329,7 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
       <div class="opt-grid" id="gs-goals-opts"></div>
 
       <div class="btn-row">
+        <button class="btn-s" onclick="gsShowPanel('gs-photo')">&larr; Back</button>
         <button class="btn-p" onclick="gsGenerate()">Generate my profile &rarr;</button>
       </div>
     </div>
@@ -438,6 +513,7 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
           <div class="btu-session">Market Research &amp; Consumer Insights — who buys what and why</div>
           <div class="btu-session">Pitch &amp; Present — how to sell your idea to investors</div>
           <div class="btu-session">Beauty Industry Economics — supply chain, margins, and pricing</div>
+          <div class="btu-session">Legal Foundations — trademarks, contracts, and protecting your brand</div>
         </div>
       </div>
 
@@ -452,6 +528,7 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
           <div class="btu-session">Data &amp; the Consumer — what brands know about you (and how)</div>
           <div class="btu-session">Virtual Try-On &amp; AR — the tech behind the filter</div>
           <div class="btu-session">The Future of Beauty Tech — where the industry is going</div>
+          <div class="btu-session">Building Your Tech Stack — tools every beauty entrepreneur needs</div>
         </div>
       </div>
 
@@ -466,6 +543,7 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
           <div class="btu-session">Lab Safety &amp; the Formulation Process — from idea to bottle</div>
           <div class="btu-session">Reading a Label — how to decode an ingredient list</div>
           <div class="btu-session">Clean Beauty &amp; the Green Chemistry Movement</div>
+          <div class="btu-session">Preservation &amp; Stability &mdash; making your formula last</div>
         </div>
       </div>
 
@@ -480,6 +558,7 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
           <div class="btu-session">The Influencer Economy — how social media drives sales</div>
           <div class="btu-session">Customer Experience Design — what makes people come back</div>
           <div class="btu-session">Distribution &amp; Scaling — getting your product on shelves</div>
+          <div class="btu-session">The Pop-Up Playbook — how to sell in person</div>
         </div>
       </div>
 
@@ -508,6 +587,42 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
 </footer>
 
 <script>
+
+// ── GENIESCAN PHOTO ──
+let gsPhotoData = null; // {base64, mediaType}
+
+function gsPhotoSelected(input){
+  const file = input.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = (e) => {
+    const dataUrl = e.target.result;
+    const base64 = dataUrl.split(',')[1];
+    gsPhotoData = {base64, mediaType: file.type || 'image/jpeg'};
+    const preview = document.getElementById('gs-photo-preview');
+    preview.src = dataUrl;
+    preview.style.display = 'block';
+    document.getElementById('gs-photo-zone').style.display = 'none';
+    document.getElementById('gs-photo-next-row').style.display = 'flex';
+  };
+  reader.readAsDataURL(file);
+}
+
+function gsRemovePhoto(){
+  gsPhotoData = null;
+  const preview = document.getElementById('gs-photo-preview');
+  preview.src = '';
+  preview.style.display = 'none';
+  document.getElementById('gs-photo-zone').style.display = 'block';
+  document.getElementById('gs-photo-next-row').style.display = 'none';
+  document.getElementById('gs-file-input').value = '';
+}
+
+function gsSkipPhoto(){
+  gsPhotoData = null;
+  document.getElementById('gs-photo-badge-wrap').innerHTML = '';
+  gsShowPanel('gs-questions');
+}
 
 // ── GENIESCAN DATA ──
 const gsHairTypes=[
@@ -589,9 +704,6 @@ function gsToggleGoal(id){
 }
 
 async function gsGenerate(){
-  if(!gsState.type&&!gsState.porosity){
-    alert('Please tell us a little about your hair first!');return;
-  }
   gsShowPanel('gs-loading');
   const tL=gsHairTypes.find(x=>x.id===gsState.type)?.name||'Not specified';
   const mL=gsMixOptions.find(x=>x.id===gsState.mix)?.name||'Not specified';
@@ -607,13 +719,26 @@ Respond with ONLY valid JSON — no markdown, no code fences, no explanation. Ex
 
 Be specific — reference their actual hair type and porosity by name. Cultural fluency matters. Warm, confident, never generic.`;
 
-  const userMsg=`My hair: Natural pattern: ${tL} | Multi-texture: ${mL} | Porosity: ${pL} | Density: ${dL} | Strand texture: ${xL} | Goals: ${gL.length?gL.join(', '):'General health'}\n\nGenerate my GenieScan™ profile.`;
+  // Show photo badge if photo was used
+  const badgeWrap = document.getElementById('gs-photo-badge-wrap');
+  if(badgeWrap && gsPhotoData){
+    badgeWrap.innerHTML = '<div class="gs-photo-badge">📸 Hair photo included in your scan</div>';
+  }
+
+  const textContent = `My hair: Natural pattern: ${tL} | Multi-texture: ${mL} | Porosity: ${pL} | Density: ${dL} | Strand texture: ${xL} | Goals: ${gL.length?gL.join(', '):'General health'}\n\nGenerate my GenieScan™ profile.`;
+  const userMsg = textContent;
 
   try{
+    const userContent = gsPhotoData
+      ? [
+          {type:'image',source:{type:'base64',media_type:gsPhotoData.mediaType,data:gsPhotoData.base64}},
+          {type:'text',text:textContent}
+        ]
+      : userMsg;
     const res=await fetch('/.netlify/functions/claude',{
       method:'POST',
       headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({system,messages:[{role:'user',content:userMsg}]})
+      body:JSON.stringify({system,messages:[{role:'user',content:userContent}],maxTokens:2048})
     });
     if(!res.ok)throw new Error('API '+res.status);
     const data=await res.json();
@@ -675,7 +800,7 @@ function gsUseStarter(el,text){
 }
 
 function gsShowPanel(id){
-  ['gs-quiz','gs-loading','gs-profile','gs-chat'].forEach(p=>{
+  ['gs-privacy','gs-photo','gs-questions','gs-loading','gs-profile','gs-chat'].forEach(p=>{
     document.getElementById(p).style.display=p===id?'block':'none';
   });
 }
