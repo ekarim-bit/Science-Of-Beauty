@@ -499,66 +499,132 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
       <div style="font-size:13px;color:var(--magenta);font-weight:600;margin-bottom:8px">WORKFORCE DEVELOPMENT CURRICULUM</div>
       <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;max-width:480px;margin:0 auto">A first-of-its-kind curriculum training the next generation of beauty industry professionals in beauty science, AI, and entrepreneurship.</div>
     </div>
-    <div class="section-lbl">The four tracks &mdash; tap to explore sessions</div>
+    <div class="section-lbl">The four curriculum tracks</div>
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:1.5rem">
-
-      <div class="btu-track-card" onclick="btuToggle('t1')" style="border-left:3px solid var(--magenta)">
+      <div class="result-card" style="border-left:3px solid var(--magenta)">
         <div style="font-size:10px;font-weight:700;color:var(--magenta);letter-spacing:0.08em;margin-bottom:6px">TRACK 01</div>
         <div class="result-title" style="font-size:15px">Business &amp; Brand Strategy</div>
-        <div style="font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5">Entrepreneurship, brand building, market analysis, and beauty industry economics.</div>
-        <div class="btu-expand-hint">Tap to see sessions ↓</div>
-        <div class="btu-sessions" id="t1">
-          <div class="btu-session">The Beauty Business Model — how beauty brands make money</div>
-          <div class="btu-session">Brand Identity &amp; Storytelling — building a brand that resonates</div>
-          <div class="btu-session">Market Research &amp; Consumer Insights — who buys what and why</div>
-          <div class="btu-session">Pitch &amp; Present — how to sell your idea to investors</div>
-          <div class="btu-session">Beauty Industry Economics — supply chain, margins, and pricing</div>
-          <div class="btu-session">Legal Foundations — trademarks, contracts, and protecting your brand</div>
-        </div>
+        <div style="font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5">Entrepreneurship, brand-building, funding, scaling, and innovation strategy.</div>
       </div>
-
-      <div class="btu-track-card" onclick="btuToggle('t2')" style="border-left:3px solid var(--blue)">
+      <div class="result-card" style="border-left:3px solid var(--blue)">
         <div style="font-size:10px;font-weight:700;color:var(--blue);letter-spacing:0.08em;margin-bottom:6px">TRACK 02</div>
         <div class="result-title" style="font-size:15px">Technology &amp; Innovation</div>
-        <div style="font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5">Beauty tech platforms, AI tools, digital retail systems, and data intelligence.</div>
-        <div class="btu-expand-hint">Tap to see sessions ↓</div>
-        <div class="btu-sessions" id="t2">
-          <div class="btu-session">AI in Beauty — how algorithms power product recommendations</div>
-          <div class="btu-session">Beauty Apps &amp; Platforms — what it takes to build one</div>
-          <div class="btu-session">Data &amp; the Consumer — what brands know about you (and how)</div>
-          <div class="btu-session">Virtual Try-On &amp; AR — the tech behind the filter</div>
-          <div class="btu-session">The Future of Beauty Tech — where the industry is going</div>
-          <div class="btu-session">Building Your Tech Stack — tools every beauty entrepreneur needs</div>
-        </div>
+        <div style="font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5">AI-powered beauty intelligence, machine learning, personalization, and consumer analytics.</div>
       </div>
-
-      <div class="btu-track-card" onclick="btuToggle('t3')" style="border-left:3px solid var(--teal)">
+      <div class="result-card" style="border-left:3px solid var(--teal)">
         <div style="font-size:10px;font-weight:700;color:var(--teal);letter-spacing:0.08em;margin-bottom:6px">TRACK 03</div>
-        <div class="result-title" style="font-size:15px">Cosmetic Chemistry</div>
-        <div style="font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5">Product formulation, ingredient science, and cosmetic development fundamentals.</div>
-        <div class="btu-expand-hint">Tap to see sessions ↓</div>
-        <div class="btu-sessions" id="t3">
-          <div class="btu-session">Ingredients 101 — what&rsquo;s actually in your products</div>
-          <div class="btu-session">Formulating for Textured Hair — science meets culture</div>
-          <div class="btu-session">Lab Safety &amp; the Formulation Process — from idea to bottle</div>
-          <div class="btu-session">Reading a Label — how to decode an ingredient list</div>
-          <div class="btu-session">Clean Beauty &amp; the Green Chemistry Movement</div>
-          <div class="btu-session">Preservation &amp; Stability &mdash; making your formula last</div>
-        </div>
+        <div class="result-title" style="font-size:15px">Cosmetic Chemistry &amp; Product Innovation</div>
+        <div style="font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5">Formulation science, ingredient knowledge, and science-to-shelf product development.</div>
       </div>
-
-      <div class="btu-track-card" onclick="btuToggle('t4')" style="border-left:3px solid #854F0B">
+      <div class="result-card" style="border-left:3px solid #854F0B">
         <div style="font-size:10px;font-weight:700;color:#854F0B;letter-spacing:0.08em;margin-bottom:6px">TRACK 04</div>
         <div class="result-title" style="font-size:15px">Beauty Retail &amp; Consumer Experience</div>
-        <div style="font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5">Retail operations, consumer behavior, cultural marketing, and distribution.</div>
-        <div class="btu-expand-hint">Tap to see sessions ↓</div>
-        <div class="btu-sessions" id="t4">
-          <div class="btu-session">The Retail Landscape — Sephora, Target, TikTok Shop &amp; beyond</div>
-          <div class="btu-session">Cultural Marketing — speaking to communities authentically</div>
-          <div class="btu-session">The Influencer Economy — how social media drives sales</div>
-          <div class="btu-session">Customer Experience Design — what makes people come back</div>
-          <div class="btu-session">Distribution &amp; Scaling — getting your product on shelves</div>
-          <div class="btu-session">The Pop-Up Playbook — how to sell in person</div>
+        <div style="font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5">Retail operations, brand-to-shelf strategy, consumer behavior analytics, and multicultural purchasing trends.</div>
+      </div>
+    </div>
+
+    <div class="section-lbl">Program sessions &mdash; tap to explore</div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:1.5rem">
+
+      <div class="btu-track-card" onclick="btuToggle('s1')" style="border-left:3px solid var(--blue)">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="min-width:28px;height:28px;border-radius:50%;background:var(--blue);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">01</div>
+          <div style="flex:1">
+            <div class="result-title" style="font-size:14px">Beauty Intelligence in the Age of AI</div>
+            <div style="font-size:11px;color:var(--slate);margin-top:2px">AI &middot; Machine Learning &middot; Personalization</div>
+          </div>
+          <div class="btu-expand-hint" style="margin-top:0;white-space:nowrap">&#8595;</div>
+        </div>
+        <div class="btu-sessions" id="s1">
+          <div class="btu-session">AI-powered beauty discovery and computer vision platforms</div>
+          <div class="btu-session">Machine learning and personalization in the beauty industry</div>
+          <div class="btu-session">Consumer recommendation systems &mdash; how they work and why they matter</div>
+          <div class="btu-session"><strong>Student outcome:</strong> AI literacy and understanding of modern beauty intelligence systems</div>
+        </div>
+      </div>
+
+      <div class="btu-track-card" onclick="btuToggle('s2')" style="border-left:3px solid var(--magenta)">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="min-width:28px;height:28px;border-radius:50%;background:var(--magenta);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">02</div>
+          <div style="flex:1">
+            <div class="result-title" style="font-size:14px">Building for the Culture</div>
+            <div style="font-size:11px;color:var(--slate);margin-top:2px">Entrepreneurship &middot; Brand Strategy &middot; Cultural Storytelling</div>
+          </div>
+          <div class="btu-expand-hint" style="margin-top:0;white-space:nowrap">&#8595;</div>
+        </div>
+        <div class="btu-sessions" id="s2">
+          <div class="btu-session">Entrepreneurship and brand-building frameworks for the modern beauty economy</div>
+          <div class="btu-session">Consumer behavior and cultural storytelling as competitive advantage</div>
+          <div class="btu-session">Innovation strategy &mdash; how to build something that lasts</div>
+          <div class="btu-session"><strong>Student outcome:</strong> Systems-thinking behind scalable, culture-driven businesses</div>
+        </div>
+      </div>
+
+      <div class="btu-track-card" onclick="btuToggle('s3')" style="border-left:3px solid #854F0B">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="min-width:28px;height:28px;border-radius:50%;background:#854F0B;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">03</div>
+          <div style="flex:1">
+            <div class="result-title" style="font-size:14px">The Infrastructure Play</div>
+            <div style="font-size:11px;color:var(--slate);margin-top:2px">Retail Operations &middot; Platform Strategy &middot; Retail Analytics</div>
+          </div>
+          <div class="btu-expand-hint" style="margin-top:0;white-space:nowrap">&#8595;</div>
+        </div>
+        <div class="btu-sessions" id="s3">
+          <div class="btu-session">Retail operations and beauty ecosystems at scale</div>
+          <div class="btu-session">Experiential commerce and platform strategy</div>
+          <div class="btu-session">Retail analytics &mdash; what the data tells us about how people shop</div>
+          <div class="btu-session"><strong>Student outcome:</strong> Mapping scalable business and retail systems</div>
+        </div>
+      </div>
+
+      <div class="btu-track-card" onclick="btuToggle('s4')" style="border-left:3px solid var(--magenta)">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="min-width:28px;height:28px;border-radius:50%;background:var(--magenta);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">04</div>
+          <div style="flex:1">
+            <div class="result-title" style="font-size:14px">Creator Economy + Beauty Commerce</div>
+            <div style="font-size:11px;color:var(--slate);margin-top:2px">Social Commerce &middot; Creator Brands &middot; Digital Marketing</div>
+          </div>
+          <div class="btu-expand-hint" style="margin-top:0;white-space:nowrap">&#8595;</div>
+        </div>
+        <div class="btu-sessions" id="s4">
+          <div class="btu-session">Social commerce and creator-led beauty brands</div>
+          <div class="btu-session">Influencer ecosystems and AI-driven product discovery</div>
+          <div class="btu-session">UGC strategy and digital beauty marketing that converts</div>
+          <div class="btu-session"><strong>Student outcome:</strong> How creators shape modern beauty purchasing behavior and digital retail ecosystems</div>
+        </div>
+      </div>
+
+      <div class="btu-track-card" onclick="btuToggle('s5')" style="border-left:3px solid var(--teal)">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="min-width:28px;height:28px;border-radius:50%;background:var(--teal);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">05</div>
+          <div style="flex:1">
+            <div class="result-title" style="font-size:14px">Culture, Identity &amp; Inclusive Innovation</div>
+            <div style="font-size:11px;color:var(--slate);margin-top:2px">Inclusive Beauty &middot; Ethical AI &middot; Multicultural Consumer Insights</div>
+          </div>
+          <div class="btu-expand-hint" style="margin-top:0;white-space:nowrap">&#8595;</div>
+        </div>
+        <div class="btu-sessions" id="s5">
+          <div class="btu-session">Inclusive beauty systems and multicultural consumer insights</div>
+          <div class="btu-session">Dataset bias, ethical AI, and beauty equity</div>
+          <div class="btu-session">Building products and platforms that see everyone</div>
+          <div class="btu-session"><strong>Student outcome:</strong> Personal innovation thesis and cultural systems awareness</div>
+        </div>
+      </div>
+
+      <div class="btu-track-card" onclick="btuToggle('s6')" style="border-left:3px solid var(--teal)">
+        <div style="display:flex;align-items:center;gap:10px">
+          <div style="min-width:28px;height:28px;border-radius:50%;background:var(--teal);color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0">06</div>
+          <div style="flex:1">
+            <div class="result-title" style="font-size:14px">From Formula to Shelf</div>
+            <div style="font-size:11px;color:var(--slate);margin-top:2px">Cosmetic Chemistry &middot; Formulation &middot; Product Development &middot; Powered by Formulery&#x2122;</div>
+          </div>
+          <div class="btu-expand-hint" style="margin-top:0;white-space:nowrap">&#8595;</div>
+        </div>
+        <div class="btu-sessions" id="s6">
+          <div class="btu-session">Cosmetic chemistry fundamentals and ingredient science</div>
+          <div class="btu-session">The product development and formulation process</div>
+          <div class="btu-session">Commercialization &mdash; getting your formula to market</div>
+          <div class="btu-session"><strong>Student outcome:</strong> Science-to-shelf fluency &middot; Powered by Formulery&#x2122;</div>
         </div>
       </div>
 
@@ -813,13 +879,18 @@ function gsRetakeQuiz(){
 function btuToggle(id){
   const el=document.getElementById(id);
   const isOpen=el.classList.contains('open');
-  ['t1','t2','t3','t4'].forEach(t=>{
-    document.getElementById(t).classList.remove('open');
-    document.getElementById(t).previousElementSibling.textContent='Tap to see sessions ↓';
+  ['s1','s2','s3','s4','s5','s6'].forEach(t=>{
+    const e=document.getElementById(t);
+    if(e){
+      e.classList.remove('open');
+      const hint=e.previousElementSibling?.querySelector('.btu-expand-hint');
+      if(hint) hint.textContent='↓';
+    }
   });
   if(!isOpen){
     el.classList.add('open');
-    el.previousElementSibling.textContent='Tap to close ↑';
+    const hint=el.previousElementSibling?.querySelector('.btu-expand-hint');
+    if(hint) hint.textContent='↑';
   }
 }
 
@@ -1075,13 +1146,18 @@ function goMod(n){
 function btuToggle(id){
   const el=document.getElementById(id);
   const isOpen=el.classList.contains('open');
-  ['t1','t2','t3','t4'].forEach(t=>{
-    document.getElementById(t).classList.remove('open');
-    document.getElementById(t).previousElementSibling.textContent='Tap to see sessions ↓';
+  ['s1','s2','s3','s4','s5','s6'].forEach(t=>{
+    const e=document.getElementById(t);
+    if(e){
+      e.classList.remove('open');
+      const hint=e.previousElementSibling?.querySelector('.btu-expand-hint');
+      if(hint) hint.textContent='↓';
+    }
   });
   if(!isOpen){
     el.classList.add('open');
-    el.previousElementSibling.textContent='Tap to close ↑';
+    const hint=el.previousElementSibling?.querySelector('.btu-expand-hint');
+    if(hint) hint.textContent='↑';
   }
 }
 
