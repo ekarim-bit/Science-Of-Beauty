@@ -172,6 +172,16 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
 .gs-starter-prompts{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
 .gs-starter{padding:6px 12px;border-radius:16px;border:1.5px solid var(--border);background:#fff;font-size:11px;color:var(--slate);cursor:pointer;font-family:'DM Sans',sans-serif}
 .gs-starter:hover{border-color:var(--magenta);color:var(--magenta)}
+
+/* BTU track cards */
+.btu-track-card{border:1.5px solid var(--border);border-radius:12px;padding:1rem;background:#fff;cursor:pointer;transition:box-shadow 0.15s}
+.btu-track-card:hover{box-shadow:0 2px 12px rgba(0,0,0,0.08)}
+.btu-expand-hint{font-size:11px;color:var(--magenta);font-weight:600;margin-top:8px}
+.btu-sessions{display:none;margin-top:10px;border-top:1px solid var(--border);padding-top:10px}
+.btu-sessions.open{display:block}
+.btu-session{font-size:12px;color:var(--near-black);padding:6px 0 6px 14px;border-bottom:1px solid var(--border);position:relative;line-height:1.4}
+.btu-session:last-child{border-bottom:none}
+.btu-session::before{content:'→';position:absolute;left:0;color:var(--slate);font-size:11px}
 </style>
 </head>
 <body>
@@ -412,34 +422,71 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
     <div style="background:var(--near-black);border-radius:12px;padding:1.5rem;margin-bottom:1.5rem;text-align:center">
       <div style="font-family:'Playfair Display',serif;font-size:26px;font-weight:700;color:#fff;margin-bottom:6px">BeautyTech U&#x2122;</div>
       <div style="font-size:13px;color:var(--magenta);font-weight:600;margin-bottom:8px">WORKFORCE DEVELOPMENT CURRICULUM</div>
-      <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;max-width:480px;margin:0 auto">A first-of-its-kind curriculum training the next generation of beauty industry professionals. Launching at Chicago State University, August 2026.</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;max-width:480px;margin:0 auto">A first-of-its-kind curriculum training the next generation of beauty industry professionals in beauty science, AI, and entrepreneurship.</div>
     </div>
-    <div class="section-lbl">The four tracks</div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;margin-bottom:1.5rem">
-      <div class="result-card" style="border-left:3px solid var(--magenta)">
+    <div class="section-lbl">The four tracks &mdash; tap to explore sessions</div>
+    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:1.5rem">
+
+      <div class="btu-track-card" onclick="btuToggle('t1')" style="border-left:3px solid var(--magenta)">
         <div style="font-size:10px;font-weight:700;color:var(--magenta);letter-spacing:0.08em;margin-bottom:6px">TRACK 01</div>
         <div class="result-title" style="font-size:15px">Business &amp; Brand Strategy</div>
         <div style="font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5">Entrepreneurship, brand building, market analysis, and beauty industry economics.</div>
+        <div class="btu-expand-hint">Tap to see sessions ↓</div>
+        <div class="btu-sessions" id="t1">
+          <div class="btu-session">The Beauty Business Model — how beauty brands make money</div>
+          <div class="btu-session">Brand Identity &amp; Storytelling — building a brand that resonates</div>
+          <div class="btu-session">Market Research &amp; Consumer Insights — who buys what and why</div>
+          <div class="btu-session">Pitch &amp; Present — how to sell your idea to investors</div>
+          <div class="btu-session">Beauty Industry Economics — supply chain, margins, and pricing</div>
+        </div>
       </div>
-      <div class="result-card" style="border-left:3px solid var(--blue)">
+
+      <div class="btu-track-card" onclick="btuToggle('t2')" style="border-left:3px solid var(--blue)">
         <div style="font-size:10px;font-weight:700;color:var(--blue);letter-spacing:0.08em;margin-bottom:6px">TRACK 02</div>
         <div class="result-title" style="font-size:15px">Technology &amp; Innovation</div>
         <div style="font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5">Beauty tech platforms, AI tools, digital retail systems, and data intelligence.</div>
+        <div class="btu-expand-hint">Tap to see sessions ↓</div>
+        <div class="btu-sessions" id="t2">
+          <div class="btu-session">AI in Beauty — how algorithms power product recommendations</div>
+          <div class="btu-session">Beauty Apps &amp; Platforms — what it takes to build one</div>
+          <div class="btu-session">Data &amp; the Consumer — what brands know about you (and how)</div>
+          <div class="btu-session">Virtual Try-On &amp; AR — the tech behind the filter</div>
+          <div class="btu-session">The Future of Beauty Tech — where the industry is going</div>
+        </div>
       </div>
-      <div class="result-card" style="border-left:3px solid var(--teal)">
+
+      <div class="btu-track-card" onclick="btuToggle('t3')" style="border-left:3px solid var(--teal)">
         <div style="font-size:10px;font-weight:700;color:var(--teal);letter-spacing:0.08em;margin-bottom:6px">TRACK 03</div>
         <div class="result-title" style="font-size:15px">Cosmetic Chemistry</div>
         <div style="font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5">Product formulation, ingredient science, and cosmetic development fundamentals.</div>
+        <div class="btu-expand-hint">Tap to see sessions ↓</div>
+        <div class="btu-sessions" id="t3">
+          <div class="btu-session">Ingredients 101 — what&rsquo;s actually in your products</div>
+          <div class="btu-session">Formulating for Textured Hair — science meets culture</div>
+          <div class="btu-session">Lab Safety &amp; the Formulation Process — from idea to bottle</div>
+          <div class="btu-session">Reading a Label — how to decode an ingredient list</div>
+          <div class="btu-session">Clean Beauty &amp; the Green Chemistry Movement</div>
+        </div>
       </div>
-      <div class="result-card" style="border-left:3px solid #854F0B">
+
+      <div class="btu-track-card" onclick="btuToggle('t4')" style="border-left:3px solid #854F0B">
         <div style="font-size:10px;font-weight:700;color:#854F0B;letter-spacing:0.08em;margin-bottom:6px">TRACK 04</div>
         <div class="result-title" style="font-size:15px">Beauty Retail &amp; Consumer Experience</div>
         <div style="font-size:12px;color:var(--slate);margin-top:4px;line-height:1.5">Retail operations, consumer behavior, cultural marketing, and distribution.</div>
+        <div class="btu-expand-hint">Tap to see sessions ↓</div>
+        <div class="btu-sessions" id="t4">
+          <div class="btu-session">The Retail Landscape — Sephora, Target, TikTok Shop &amp; beyond</div>
+          <div class="btu-session">Cultural Marketing — speaking to communities authentically</div>
+          <div class="btu-session">The Influencer Economy — how social media drives sales</div>
+          <div class="btu-session">Customer Experience Design — what makes people come back</div>
+          <div class="btu-session">Distribution &amp; Scaling — getting your product on shelves</div>
+        </div>
       </div>
+
     </div>
     <div class="aff-strip" style="margin-bottom:1.5rem">
       <div class="aff-label">Launching August 2026</div>
-      <div class="aff-text">Chicago State University &middot; Campus licensing available nationwide</div>
+      <div class="aff-text">Campus licensing available nationwide</div>
     </div>
     <div style="text-align:center;background:var(--off-white);border-radius:12px;padding:1.5rem;border:1.5px solid var(--border)">
       <div style="font-family:'Playfair Display',serif;font-size:18px;font-weight:700;color:var(--near-black);margin-bottom:8px">Ready to go further?</div>
@@ -636,7 +683,22 @@ function gsShowPanel(id){
 function gsRetakeQuiz(){
   gsState={type:null,mix:null,porosity:null,density:null,texture:null,goals:[]};
   gsProfile=null;gsChatHistory=[];
-  // ── NAME CAPTURE ──
+  
+// ── BTU TRACK TOGGLE ──
+function btuToggle(id){
+  const el=document.getElementById(id);
+  const isOpen=el.classList.contains('open');
+  ['t1','t2','t3','t4'].forEach(t=>{
+    document.getElementById(t).classList.remove('open');
+    document.getElementById(t).previousElementSibling.textContent='Tap to see sessions ↓';
+  });
+  if(!isOpen){
+    el.classList.add('open');
+    el.previousElementSibling.textContent='Tap to close ↑';
+  }
+}
+
+// ── NAME CAPTURE ──
 let studentName = '';
 function startApp(){
   const val = document.getElementById('student-name-input').value.trim();
@@ -881,6 +943,21 @@ function goMod(n){
   const pcts={1:'20',2:'40',3:'60',4:'80',5:'100'};
   document.getElementById('prog').style.width=(pcts[n]||'20')+'%';
   window.scrollTo({top:0,behavior:'smooth'});
+}
+
+
+// ── BTU TRACK TOGGLE ──
+function btuToggle(id){
+  const el=document.getElementById(id);
+  const isOpen=el.classList.contains('open');
+  ['t1','t2','t3','t4'].forEach(t=>{
+    document.getElementById(t).classList.remove('open');
+    document.getElementById(t).previousElementSibling.textContent='Tap to see sessions ↓';
+  });
+  if(!isOpen){
+    el.classList.add('open');
+    el.previousElementSibling.textContent='Tap to close ↑';
+  }
 }
 
 // ── NAME CAPTURE ──
