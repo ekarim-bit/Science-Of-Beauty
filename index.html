@@ -283,14 +283,11 @@ textarea:focus,input[type=text]:focus{outline:none;border-color:var(--magenta)}
       <img id="gs-photo-preview" class="gs-photo-preview" alt="Hair photo preview" />
       <div id="gs-photo-zone" class="gs-photo-zone" onclick="document.getElementById('gs-file-input').click()">
         <div class="gs-photo-icon">📸</div>
-        <div class="gs-photo-title">Tap to upload a photo</div>
-        <div class="gs-photo-sub">Choose from your camera roll or files &mdash; JPEG, PNG, HEIC</div>
+        <div class="gs-photo-title">Upload a photo of your hair</div>
+        <div class="gs-photo-sub">Click here to choose a photo from your device &mdash; JPEG, PNG, or HEIC</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--slate)">On mobile? Your camera app will open automatically</div>
       </div>
-      <input type="file" id="gs-file-input" accept="image/*" style="display:none" onchange="gsPhotoSelected(this)">
-      <input type="file" id="gs-camera-input" accept="image/*" capture="environment" style="display:none" onchange="gsPhotoSelected(this)">
-      <div style="text-align:center;margin-bottom:0.5rem">
-        <button class="btn-s" style="font-size:12px;padding:7px 16px" onclick="document.getElementById('gs-camera-input').click()">📷 Open camera</button>
-      </div>
+      <input type="file" id="gs-file-input" accept="image/jpeg,image/png,image/heic,image/heif,image/webp" style="display:none" onchange="gsPhotoSelected(this)">
       <div class="btn-row" id="gs-photo-next-row" style="display:none">
         <button class="btn-p" onclick="gsShowPanel('gs-questions')">Looks good &mdash; next &rarr;</button>
         <button class="btn-s" onclick="gsRemovePhoto()">Remove photo</button>
@@ -816,8 +813,13 @@ Be specific — reference their actual hair type and porosity by name. Cultural 
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({system,messages:[{role:'user',content:userContent}],maxTokens:2048})
     });
-    if(!res.ok)throw new Error('API '+res.status);
+    if(!res.ok){
+      let errMsg='HTTP '+res.status;
+      try{const e=await res.json();errMsg=e.error||errMsg;}catch(e){}
+      throw new Error(errMsg);
+    }
     const data=await res.json();
+    if(data.error)throw new Error(data.error);
     gsProfile=JSON.parse(data.content);
     gsChatSystem=`You are GenieScan™, BeautyTech U™'s AI hair expert. You already know this user's hair profile:\n\nProfile: ${gsProfile.profileName}\nNatural pattern: ${tL} | Multi-texture: ${mL} | Porosity: ${pL} | Density: ${dL} | Texture: ${xL}\nGoals: ${gL.join(', ')||'General health'}\nKey insights: ${gsProfile.keyInsights.join('; ')}\nTop priority: ${gsProfile.topPriority}\nReach for: ${gsProfile.ingredients.join(', ')}\nAvoid: ${gsProfile.avoid.join(', ')}\n\nAnswer questions as if you know their hair personally. Be warm, direct, culturally fluent. Speak to the experience of Black women and textured hair communities. Keep answers conversational — 2-4 sentences unless they ask for detail.`;
     gsChatHistory=[];
@@ -953,8 +955,13 @@ async function gsSend(){
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({system:gsChatSystem,messages:apiMsgs})
     });
-    if(!res.ok)throw new Error('API '+res.status);
+    if(!res.ok){
+      let errMsg='HTTP '+res.status;
+      try{const e=await res.json();errMsg=e.error||errMsg;}catch(e){}
+      throw new Error(errMsg);
+    }
     const data=await res.json();
+    if(data.error)throw new Error(data.error);
     typing.remove();
     gsAddMessage('ai',data.content);
   }catch(err){
